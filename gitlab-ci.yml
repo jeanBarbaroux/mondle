@@ -18,15 +18,6 @@ install_dependencies:
   script:
     - npm install
 
-# Job to build the project and output the result to the public directory
-build_project:
-  stage: build
-  script:
-    - npm run build -- --prod --output-path=public
-  artifacts:
-    paths:
-      - public
-
 # Job to move the public directory to a subdirectory named after the project
 # This is required by GitLab Pages
 pages:
@@ -41,3 +32,4 @@ pages:
   # This pipeline will only run on the master branch
   only:
     - master
+    - main
