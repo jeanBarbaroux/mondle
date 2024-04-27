@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.input-container {
+  position: relative;
+  margin-top: 15px;
+}
+
+.input {
+  width: 380px;
+  padding: 10px;
+  height: 40px;
+  border: 2px solid #0B2447;
+  border-top: none;
+  border-bottom: none;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 7px 7px 0px 0px #0B2447;
+  margin-bottom: 10px;
+}
+
+.input-container .topline, .input-container .underline {
+  position: absolute;
+  content: "";
+  background-color: #0B2447;
+  height: 2px;
+  right: 0;
+}
+
+.topline {
+  top: 0;
+}
+
+.underline {
+  bottom: 0;
+}
+
+option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: 16px;
+  width: 400px;
+  height: 40px;
+}
+
+.propositions {
+  max-height: 50vh;
+  overflow-y: auto;
+  padding-bottom: 0;
+}
+
+.countries {
+  display: flex;
+  flex-direction: column;
+  max-height: 30vh;
+  overflow-y: auto;
+}

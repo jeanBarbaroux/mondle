@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="propositions">
+        <app-compare-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-compare-country>
+    </div>
+    <div class="input-container">
+        <input (keyup.enter)="selectCountry(countries[0])" [formControl]="countryControl" [placeholder]="'COUNTRY.SEARCH' | translate" class="input"
+               type="text">
+        <div class="topline"></div>
+        <div class="underline"></div>
+    </div>
+</div>
+<div class="countries">
+    <div *ngIf="countryControl.value">
+        <option *ngFor="let country of countries" [value]="country">
+            <button (click)="selectCountry(country)">{{ country }}</button>
+        </option>
+    </div>
+</div>

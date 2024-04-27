@@ -1,0 +1,79 @@
+.bigSize {
+  font-size: 12px;
+}
+
+.front,
+.back {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.front {
+  top: -90px;
+  backface-visibility: hidden;
+}
+
+.back {
+  background: black;
+  border-radius: 6px;
+}
+
+@keyframes rotateAndShow {
+  0% {
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.front {
+  opacity: 0;
+  top: -90px;
+  backface-visibility: hidden;
+}
+
+.one {
+  animation: rotateAndShow 2s ease-out forwards;
+}
+
+.two {
+  animation: rotateAndShow 2.5s ease-out forwards;
+}
+
+.three {
+  animation: rotateAndShow 3s ease-out forwards;
+}
+
+.four {
+  animation: rotateAndShow 3.5s ease-out forwards;
+}
+
+.five {
+  animation: rotateAndShow 4s ease-out forwards;
+}
+
+.six {
+  animation: rotateAndShow 4.5s ease-out forwards;
+}
+
+.arrow {
+  position: absolute;
+  opacity: 0.1;
+}
+
+.down {
+  rotate: 180deg;
+}
+

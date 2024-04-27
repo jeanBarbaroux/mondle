@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-size: 39px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+svg {
+  margin-right: 10px;
+}
+
+.dropdown {
+  margin: 10px 0 0 20px;
+}
+
+a {
+  width: 50px;
+  height: 50px;
+}
+
+span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang:active {
+  transform: translate(3px, 3px);
+}

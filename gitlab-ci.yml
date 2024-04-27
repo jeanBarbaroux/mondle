@@ -1,0 +1,43 @@
+# Use the latest version of Node.js
+image: node:latest
+
+# Cache the node_modules directory to speed up subsequent builds
+cache:
+  paths:
+    - node_modules/
+
+# Define the stages of the pipeline
+stages:
+  - install
+  - build
+  - deploy
+
+# Job to install the project dependencies
+install_dependencies:
+  stage: install
+  script:
+    - npm install
+
+# Job to build the project and output the result to the public directory
+build_project:
+  stage: build
+  script:
+    - npm run build -- --prod --output-path=public
+  artifacts:
+    paths:
+      - public
+
+# Job to move the public directory to a subdirectory named after the project
+# This is required by GitLab Pages
+pages:
+  stage: deploy
+  script:
+    - mv public public_old
+    - mkdir public
+    - mv public_old public/$CI_PROJECT_NAME
+  artifacts:
+    paths:
+      - public
+  # This pipeline will only run on the master branch
+  only:
+    - master
