@@ -1,0 +1,14 @@
+{
+  "HOME": {
+    "COUNTRY_BUTTON": "Pays du jour",
+    "FLAG_BUTTON": "Drapeau du jour",
+    "CAPITAL_BUTTON": "Capitale du jour"
+  },
+  "COUNTRY": {
+    "SEARCH": "Entrer un pays"
+  },
+  "COUNTRIES": {
+    "Netherlands": "Pays-Bas"
+  },
+  "RESET": "Réinitialiser"
+}
