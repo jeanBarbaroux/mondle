@@ -2,18 +2,17 @@
 image: node:lts
 # Functions that should be executed before the build script is run
 before_script:
-  - npm install
+  - npm ci
 pages:
   script:
     - npm run build
-    - echo "/* /index.html 200" >dist/mondle/_redirects
+    - echo "/* /index.html 200" >dist/mondle/browser/_redirects
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
-      - dist/mondle
-  publish: dist/mondle
+      - dist/mondle/browser
+  publish: dist/mondle/browser
   rules:
     # This ensures that only pushes to the default branch will trigger
     # a pages deploy
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
-
