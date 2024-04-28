@@ -1,4 +1,5 @@
 <div class="container">
+  <app-compare-country [countryGuessed]="countryExample"></app-compare-country>
   <div class="propositions">
     <app-compare-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-compare-country>
   </div>

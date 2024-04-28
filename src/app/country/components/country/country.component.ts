@@ -33,6 +33,49 @@ export class CountryComponent implements OnInit {
     countryControl = new FormControl();
     allCountries: string[] = [];
     countryFound: boolean = false;
+    countryExample: CountryGuessed = {
+      name: 'Country name',
+      success: false,
+      countryGuessed: 'Country name',
+      informationGuesses: [
+        {
+          field: 'Continent',
+          informations: ['Continent'],
+          color: 'red',
+          direction: null
+        },
+        {
+          field: 'Area',
+          informations: ['Area'],
+          color: 'red',
+          direction: null
+        },
+        {
+          field: 'Population',
+          informations: ['Population'],
+          color: 'red',
+          direction: null
+        },
+        {
+          field: 'Phone code',
+          informations: ['Phone code'],
+          color: 'red',
+          direction: null
+        },
+        {
+          field: 'Language',
+          informations: ['Language'],
+          color: 'red',
+          direction: null
+        },
+        {
+          field: 'Common borders',
+          informations: ['Common borders'],
+          color: 'red',
+          direction: null
+        }
+      ]
+    }
     @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
     constructor(private countryService: CountryService, private localStorageService: LocalStorageService) {
