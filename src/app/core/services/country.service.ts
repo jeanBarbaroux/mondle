@@ -8,7 +8,8 @@ import {CountryGuessed} from '../models/countryGuessed.model';
 @Injectable()
 export class CountryService {
     protected countries: Country[] = [];
-    private api = "https://epitaide.com"
+    private api = "https://epitaide.com/mondle" // Uncomment this line to use the remote API
+    //private api = "http://localhost:7299" // Uncomment this line to use the local API
 
     constructor(private http: HttpClient) {
     }
