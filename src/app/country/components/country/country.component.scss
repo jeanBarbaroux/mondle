@@ -61,6 +61,7 @@ button {
 .countries {
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-height: 30vh;
   overflow-y: auto;
 }
