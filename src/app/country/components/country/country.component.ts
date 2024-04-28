@@ -32,6 +32,7 @@ export class CountryComponent implements OnInit {
     countriesTried: CountryGuessed[] = [];
     countryControl = new FormControl();
     allCountries: string[] = [];
+    countryFound: boolean = false;
     @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
     constructor(private countryService: CountryService, private localStorageService: LocalStorageService) {
@@ -65,9 +66,12 @@ export class CountryComponent implements OnInit {
         this.countryService.getCountryGuessed(country)
             .subscribe((countryGuessed) => {
                 this.countriesTried.push(countryGuessed);
+                this.countryFound = countryGuessed.success;
                 this.localStorageService.setItem('countriesTried', this.countriesTried);
                 this.allCountries = this.allCountries.filter(c => c !== country);
-
+                if (this.countryFound) {
+                    this.countryControl.disable();
+                }
             });
         this.scrollToBottom();
         this.countryControl.setValue('');

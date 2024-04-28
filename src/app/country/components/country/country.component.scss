@@ -56,6 +56,7 @@ button {
   max-height: 50vh;
   overflow-y: auto;
   padding-bottom: 0;
+  scrollbar-width: none;
 }
 
 .countries {
@@ -64,4 +65,5 @@ button {
   align-items: center;
   max-height: 30vh;
   overflow-y: auto;
+  scrollbar-width: none;
 }

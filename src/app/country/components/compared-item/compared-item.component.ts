@@ -1,13 +1,14 @@
 import {Component, Input} from '@angular/core';
 import {InformationGuess} from "../../../core/models/countryGuessed.model";
-import {NgStyle} from "@angular/common";
+import {NgForOf, NgStyle} from "@angular/common";
 
 @Component({
   selector: 'app-compared-item',
   templateUrl: './compared-item.component.html',
   standalone: true,
   imports: [
-    NgStyle
+    NgStyle,
+    NgForOf
   ],
   styleUrls: ['./compared-item.component.scss']
 })
@@ -39,5 +40,6 @@ export class ComparedItemComponent {
       default:
         break;
     }
+    console.log(this.indications.informations);
   }
 }
