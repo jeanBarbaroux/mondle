@@ -127,7 +127,6 @@ export class CountryComponent implements OnInit {
             if (lastElement) {
                 lastElement.scrollIntoView({behavior: 'smooth'});
             }
-            console.log(elements.length - 1);
         }, 100);
     }
 }

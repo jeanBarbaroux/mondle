@@ -40,6 +40,5 @@ export class ComparedItemComponent {
       default:
         break;
     }
-    console.log(this.indications.informations);
   }
 }
