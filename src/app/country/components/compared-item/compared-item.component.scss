@@ -7,11 +7,12 @@
   width: 90px;
   height: 90px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   border-radius: 5px;
   position: relative;
-  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .front {
@@ -20,7 +21,7 @@
 }
 
 .back {
-  background: black;
+  background: gray;
   border-radius: 6px;
 }
 

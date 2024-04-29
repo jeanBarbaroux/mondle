@@ -5,10 +5,19 @@
     "CAPITAL_BUTTON": "Capitale du jour"
   },
   "COUNTRY": {
-    "SEARCH": "Entrer un pays"
-  },
-  "COUNTRIES": {
-    "Netherlands": "Pays-Bas"
-  },
-  "RESET": "Réinitialiser"
+    "SEARCH": "Entrer un pays",
+    "INDICATION": {
+      "CONTINENT": "Continent",
+      "AREA": "Superficie",
+      "POPULATION": "Population",
+      "PHONE_CODE": "Indicatif téléphonique",
+      "LANGUAGES": "Langues",
+      "COMMON_BORDERS": "Frontières communes"
+    },
+    "CLUE": {
+      "CURRENCY": "Monnaie",
+      "FLAG": "Drapeau",
+      "CAPITAL": "Capitale"
+    }
+  }
 }

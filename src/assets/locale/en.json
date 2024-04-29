@@ -5,10 +5,19 @@
     "CAPITAL_BUTTON": "Capital of the day"
   },
   "COUNTRY": {
-    "SEARCH": "Search for a country"
-  },
-  "COUNTRIES": {
-    "Netherlands": "Netherlands"
-  },
-  "RESET": "Reset"
+    "SEARCH": "Search for a country",
+    "INDICATION": {
+      "CONTINENT": "Continent",
+      "AREA": "Area",
+      "POPULATION": "Population",
+      "PHONE_CODE": "Phone code",
+      "LANGUAGES": "Languages",
+      "COMMON_BORDERS": "Common borders"
+    },
+    "CLUE": {
+      "CAPITAL": "Capital",
+      "FLAG": "Flag",
+      "CURRENCY": "Currency"
+    }
+  }
 }

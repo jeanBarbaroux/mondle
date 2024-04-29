@@ -1,14 +1,35 @@
 <div class="container">
-  <app-compare-country [countryGuessed]="countryExample"></app-compare-country>
+  <div class="indications" *ngIf="countriesTried.length > 0">
+    <span>{{ "COUNTRY.INDICATION.CONTINENT" | translate }}</span>
+    <span>{{ "COUNTRY.INDICATION.AREA" | translate }}</span>
+    <span>{{ "COUNTRY.INDICATION.POPULATION" | translate }}</span>
+    <span>{{ "COUNTRY.INDICATION.PHONE_CODE" | translate }}</span>
+    <span>{{ "COUNTRY.INDICATION.LANGUAGES" | translate }}</span>
+    <span>{{ "COUNTRY.INDICATION.COMMON_BORDERS" | translate }}</span>
+  </div>
   <div class="propositions">
     <app-compare-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-compare-country>
   </div>
   <div class="input-container">
-    <input (keyup.enter)="countryControl.value != '' && selectCountry(countries[0])" [formControl]="countryControl"
-       [placeholder]="'COUNTRY.SEARCH' | translate" class="input"
-       type="text">
+    <input (keyup.enter)="countryControl.value != '' && selectCountry(countries[0])"
+           [formControl]="countryControl"
+           [placeholder]="'COUNTRY.SEARCH' | translate"
+           [disabled]="countryFound"
+           class="input" type="text">
     <div class="topline"></div>
     <div class="underline"></div>
+  </div>
+  <div class="clues">
+    <button [disabled]="deactivateFirst" class="firstClue clue" (click)="getCurrency()">
+      {{ this.currency | translate}}
+    </button>
+    <button [disabled]="deactivateSecond" class="secondClue clue" (click)="getCapital()">
+      {{ this.capital | translate}}
+    </button>
+    <button [disabled]="deactivateThird" class="thirdClue clue" (click)="getFlag()">
+      <div [innerHTML]="flagHtml"></div>
+      {{ this.flag | translate}}
+    </button>
   </div>
 </div>
 <div class="countries">
