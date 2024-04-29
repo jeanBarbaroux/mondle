@@ -15,9 +15,9 @@
       "COMMON_BORDERS": "Frontières communes"
     },
     "CLUE": {
-      "CURRENCY": "Monnaie",
+      "CAPITAL": "Capitale",
       "FLAG": "Drapeau",
-      "CAPITAL": "Capitale"
+      "CURRENCY": "Monnaie"
     }
   }
 }
