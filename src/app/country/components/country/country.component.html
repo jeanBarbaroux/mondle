@@ -1,11 +1,11 @@
 <div class="container">
   <div class="indications" *ngIf="countriesTried.length > 0">
-    <span>{{ "COUNTRY.INDICATION.CONTINENT" | translate }}</span>
-    <span>{{ "COUNTRY.INDICATION.AREA" | translate }}</span>
-    <span>{{ "COUNTRY.INDICATION.POPULATION" | translate }}</span>
-    <span>{{ "COUNTRY.INDICATION.PHONE_CODE" | translate }}</span>
-    <span>{{ "COUNTRY.INDICATION.LANGUAGES" | translate }}</span>
-    <span>{{ "COUNTRY.INDICATION.COMMON_BORDERS" | translate }}</span>
+    <span>{{ "INDICATION.CONTINENT" | translate }}</span>
+    <span>{{ "INDICATION.AREA" | translate }}</span>
+    <span>{{ "INDICATION.POPULATION" | translate }}</span>
+    <span>{{ "INDICATION.PHONE_CODE" | translate }}</span>
+    <span>{{ "INDICATION.LANGUAGES" | translate }}</span>
+    <span>{{ "INDICATION.COMMON_BORDERS" | translate }}</span>
   </div>
   <div class="propositions">
     <app-compare-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-compare-country>

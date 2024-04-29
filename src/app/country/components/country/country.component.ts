@@ -42,9 +42,9 @@ export class CountryComponent implements OnInit {
   deactivateThird: boolean = true;
   flagHtml: SafeHtml = ''
 
-  currency = 'COUNTRY.CLUE.CURRENCY';
-  capital = 'COUNTRY.CLUE.CAPITAL';
-  flag = 'COUNTRY.CLUE.FLAG';
+  currency = 'CLUE.CURRENCY';
+  capital = 'CLUE.CAPITAL';
+  flag = 'CLUE.FLAG';
   count: number = 0;
   clueActivated() {
     console.log('clue activated')
