@@ -54,6 +54,7 @@ export class CountryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.localStorageService.resetAtMidnight();
     this.countryService.getAllCountries()
       .subscribe((countryList) => {
         let isLocalStorageEmpty = (this.localStorageService.getItem('allCountries')).length
@@ -74,11 +75,6 @@ export class CountryComponent implements OnInit {
     } else {
       this.countryControl.enable();
     }
-
-    this.localStorageService.resetAtMidnight('countriesTried');
-    this.localStorageService.resetAtMidnight('countryFound');
-    this.localStorageService.resetAtMidnight('allCountries');
-    this.localStorageService.resetAtMidnight('count');
 
     this.countryControl.valueChanges
       .pipe(
