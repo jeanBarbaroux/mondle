@@ -22,12 +22,10 @@ export class LocalStorageService {
   resetAtMidnight() {
     let lastTry = this.getItem('dateStarted')
     if (lastTry.length === 0) {
-      console.log('first try')
       this.setItem('dateStarted', new Date())
       this.clearItem()
     } else {
-      if (new Date().getDate() !== new Date(lastTry).getDate()) {
-        console.log('new day')
+      if (new Date().getDate() !== new Date(lastTry).getDate() || new Date().getMonth() !== new Date(lastTry).getMonth() || new Date().getFullYear() !== new Date(lastTry).getFullYear()){
         this.setItem('dateStarted', new Date())
         this.clearItem()
       }
