@@ -4,7 +4,7 @@ import {filter, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CountryService} from '../../../core/services/country.service';
 import {CompareCountryComponent} from "../compare-country/compare-country.component";
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateModule} from "@ngx-translate/core";
 import {CountryGuessed} from "../../../core/models/countryGuessed.model";
@@ -25,6 +25,7 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
     NgForOf,
     NgIf,
     TranslateModule,
+    NgOptimizedImage,
   ],
   providers: [CountryService, LocalStorageService]
 })
@@ -46,9 +47,6 @@ export class CountryComponent implements OnInit {
   capital = 'CLUE.CAPITAL';
   flag = 'CLUE.FLAG';
   count: number = 0;
-  clueActivated() {
-    console.log('clue activated')
-  }
 
   @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
@@ -61,8 +59,7 @@ export class CountryComponent implements OnInit {
         let isLocalStorageEmpty = (this.localStorageService.getItem('allCountries')).length
         if (isLocalStorageEmpty !== 0) {
           this.allCountries = this.localStorageService.getItem('allCountries');
-        }
-        else {
+        } else {
           this.allCountries = countryList.sort();
         }
       });
@@ -154,7 +151,7 @@ export class CountryComponent implements OnInit {
   }
 
   checkCountry() {
-   if (this.count >= 5) {
+    if (this.count >= 5) {
       this.deactivateFirst = false;
     }
     if (this.count >= 10) {
@@ -180,18 +177,10 @@ export class CountryComponent implements OnInit {
   }
 
   getFlag() {
-  this.countryService.getFlags()
-    .subscribe((flag) => {
-      this.http.get(flag, {responseType: 'text'}).subscribe(
-        (data) => {
-          if (data.startsWith('<svg')) {
-            data = data.replace('<svg', '<svg height="34px""');
-            data = data.replace('width=', '');
-          }
-          this.flagHtml = this.sanitizer.bypassSecurityTrustHtml(data);
-          this.flag = '';
-        }
-      );
-    });
-}
+    this.countryService.getFlags()
+      .subscribe((flag) => {
+        this.flagHtml = flag;
+        this.flag = ''
+      });
+  }
 }

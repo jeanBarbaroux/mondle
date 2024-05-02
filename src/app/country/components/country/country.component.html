@@ -27,7 +27,7 @@
       {{ this.capital | translate}}
     </button>
     <button [disabled]="deactivateThird" class="thirdClue clue" (click)="getFlag()">
-      <div [innerHTML]="flagHtml"></div>
+      <img ngSrc="{{flagHtml}}"/>
       {{ this.flag | translate}}
     </button>
   </div>

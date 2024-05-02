@@ -1,33 +1,30 @@
 import {Injectable} from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class LocalStorageService {
-    setItem(key: string, value: any) {
-        localStorage.setItem(key, JSON.stringify(value));
-    }
+  setItem(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
-    getItem(key: string) {
-        return JSON.parse(localStorage.getItem(key) || '[]');
-    }
+  getItem(key: string) {
+    return JSON.parse(localStorage.getItem(key) || '[]');
+  }
 
-    clearItem(key: string) {
-        localStorage.removeItem(key);
-    }
+  clearItem(key: string) {
+    localStorage.removeItem(key);
+  }
 
-    resetAtMidnight(key: string) {
-        const now = new Date();
-        const night = new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            now.getDate() + 1, // the next day, ...
-            0, 0, 0 // ...at 00:00:00 hours
-        );
-        const msToMidnight = night.getTime() - now.getTime();
-
-        setTimeout(() => {
-            this.clearItem(key);
-        }, msToMidnight);
+  resetAtMidnight(key: string) {
+    let lastTry = this.getItem('dateStarted')
+    if (lastTry.length === 0) {
+      this.setItem('dateStarted', new Date())
+    } else {
+      if (new Date().getDate() !== new Date(lastTry).getDate()) {
+        this.setItem('dateStarted', new Date())
+        this.clearItem(key)
+      }
     }
+  }
 }
