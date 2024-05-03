@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import { LocalStorageSubject } from "../observables/local-storage-subject";
-import { Observable, Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {LocalStorageSubject} from "../observables/local-storage-subject";
+import {Subject} from 'rxjs';
 import {CountryGuessed} from "../core/models/countryGuessed.model";
-import {Country} from "../core/models/country.model";
 import {LocalStorageService} from "../core/services/local-storage.service";
 
 export type Lang = 'fr' | 'en'
@@ -19,6 +18,8 @@ export class LangService {
   countriesTriedChange: Subject<CountryGuessed[]> = new Subject<CountryGuessed[]>();
   langChange: Subject<Lang> = new Subject<Lang>();
   countChange: Subject<number> = new Subject<number>();
+  countryFound: LocalStorageSubject<boolean> = new LocalStorageSubject<boolean>('countryFound', false, true);
+  countryFoundChange: Subject<boolean> = new Subject<boolean>();
 
   constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', (event) => {
@@ -30,6 +31,9 @@ export class LangService {
       }
       if (event.key === 'count') {
         this.countChange.next(this.count.value);
+      }
+      if (event.key === 'countryFound') {
+        this.countryFoundChange.next(this.countryFound.value);
       }
     });
   }
