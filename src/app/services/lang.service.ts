@@ -3,10 +3,11 @@ import { LocalStorageSubject } from "../observables/local-storage-subject";
 import { Observable, Subject } from 'rxjs';
 import {CountryGuessed} from "../core/models/countryGuessed.model";
 import {Country} from "../core/models/country.model";
+import {LocalStorageService} from "../core/services/local-storage.service";
 
 export type Lang = 'fr' | 'en'
 
-export const DEFAULT_LANGUAGE: Lang = 'en'
+export const DEFAULT_LANGUAGE: Lang = 'fr'
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class LangService {
   langChange: Subject<Lang> = new Subject<Lang>();
   countChange: Subject<number> = new Subject<number>();
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', (event) => {
       if (event.key === 'settings.lang') {
         this.langChange.next(this.lang.value);

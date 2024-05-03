@@ -21,6 +21,13 @@ export class CountryService {
       );
   }
 
+  getAllCountriesEn(filter: string = ''): Observable<string[]> {
+    return this.http.get<string[]>(`${this.api}/api/Countries/autocomplete/data/en`)
+      .pipe(
+        map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
+      );
+  }
+
   getCountryGuessed(country: string): Observable<CountryGuessed> {
     return this.http.get<CountryGuessed>(`${this.api}/api/Countries/guess/${country}`);
   }

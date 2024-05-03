@@ -25,11 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.langChangeSubscription = this.langService.langChange.subscribe((lang) => {
-      var lange= this.localstorageService.getItem('settings.lang');
-      if (!lange) {
-        lange = 'fr';
-      }
-      this.translate.use(lange);
+      this.translate.use(lang);
     });
   }
 

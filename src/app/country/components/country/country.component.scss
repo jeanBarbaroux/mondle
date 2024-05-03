@@ -70,7 +70,7 @@ button {
   scrollbar-width: none;
 }
 
-span {
+.indice {
   width: 80px;
   height: 40px;
   text-align: center;
@@ -117,4 +117,11 @@ span {
 
 img {
   max-height: 35px;
+}
+
+button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

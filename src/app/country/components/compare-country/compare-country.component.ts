@@ -3,6 +3,7 @@ import {DecimalPipe, NgForOf, NgStyle, UpperCasePipe} from "@angular/common";
 import {TranslateService} from '@ngx-translate/core';
 import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 import {ComparedItemComponent} from "../compared-item/compared-item.component";
+import {LocalStorageService} from "../../../core/services/local-storage.service";
 
 @Component({
     selector: 'app-compare-country',
@@ -20,10 +21,17 @@ import {ComparedItemComponent} from "../compared-item/compared-item.component";
 export class CompareCountryComponent {
     @Input() countryGuessed!: CountryGuessed;
     protected readonly String = String;
+    countryName: string = '';
 
-    constructor(private translate: TranslateService) {
+
+    constructor(private translate: TranslateService, private localStorageService: LocalStorageService) {
     }
 
     ngOnInit() {
+    }
+
+    get displayCountryName() {
+        const lang = this.localStorageService.getItem('settings.lang');
+        return lang === 'fr' ? this.countryGuessed.countryGuessed : this.countryGuessed.countryGuessEnglish;
     }
 }

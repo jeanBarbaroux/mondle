@@ -25,7 +25,7 @@ export class LocalStorageService {
       this.setItem('dateStarted', new Date())
       this.clearItem()
     } else {
-      if (new Date().getDate() !== new Date(lastTry).getDate() || new Date().getMonth() !== new Date(lastTry).getMonth() || new Date().getFullYear() !== new Date(lastTry).getFullYear()){
+      if (new Date().getDate() !== new Date(lastTry).getDate() || new Date().getMonth() !== new Date(lastTry).getMonth() || new Date().getFullYear() !== new Date(lastTry).getFullYear()) {
         this.setItem('dateStarted', new Date())
         this.clearItem()
       }

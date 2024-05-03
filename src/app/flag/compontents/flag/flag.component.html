@@ -1,1 +1,19 @@
-<p>flag works!</p>
+<div class="container">
+  <div [innerHTML]="flagHtml"></div>
+  <div class="input-container">
+    <input (keyup.enter)="countryControl.value != '' && selectCountry(countries[0])"
+           [formControl]="countryControl"
+           [placeholder]="'COUNTRY.SEARCH' | translate"
+           [disabled]="countryFound"
+           class="input" type="text">
+    <div class="topline"></div>
+    <div class="underline"></div>
+  </div>
+</div>
+<div class="countries">
+  <div *ngIf="countryControl.value">
+    <div *ngFor="let country of countries">
+      <button (click)="selectCountry(country)">{{ country }}</button>
+    </div>
+  </div>
+</div>

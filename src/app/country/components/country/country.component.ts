@@ -5,12 +5,12 @@ import {map} from 'rxjs/operators';
 import {CountryService} from '../../../core/services/country.service';
 import {CompareCountryComponent} from "../compare-country/compare-country.component";
 import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {TranslateModule} from "@ngx-translate/core";
 import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {LangService} from "../../../services/lang.service";
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {SafeHtml} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-country',
@@ -34,6 +34,7 @@ export class CountryComponent implements OnInit {
   countries: string[] = [];
   countriesTried: CountryGuessed[] = [];
   allCountries: string[] = [];
+  allCountriesEn: string[] = [];
   countryFound: boolean = false;
   countryControl = new FormControl({value: '', disabled: this.countryFound});
   private countriesTriedChangeSubscription!: Subscription;
@@ -50,7 +51,7 @@ export class CountryComponent implements OnInit {
 
   @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
-  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService, private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService) {
   }
 
   ngOnInit() {
@@ -64,7 +65,14 @@ export class CountryComponent implements OnInit {
           this.allCountries = countryList.sort();
         }
       });
-
+    this.countryService.getAllCountriesEn().subscribe((countryListEn) => {
+      let isLocalStorageEmpty = (this.localStorageService.getItem('allCountriesEn')).length
+      if (isLocalStorageEmpty !== 0) {
+        this.allCountriesEn = this.localStorageService.getItem('allCountriesEn');
+      } else {
+        this.allCountriesEn = countryListEn.sort();
+      }
+    })
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
@@ -108,7 +116,10 @@ export class CountryComponent implements OnInit {
   }
 
   filterCountries(filter: string): string[] {
-    return this.allCountries.filter(country => country.toLowerCase().includes(filter.toLowerCase()));
+    const normalizedFilter = filter.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    return this.allCountries.filter(country =>
+      country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(normalizedFilter)
+    );
   }
 
   selectCountry(country: string) {

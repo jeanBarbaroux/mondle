@@ -9,5 +9,6 @@ export interface CountryGuessed {
     name: string;
     success: boolean;
     countryGuessed: string;
+    countryGuessEnglish: string;
     informationGuesses: InformationGuess[];
 }

@@ -31,3 +31,7 @@ span {
 .lang:active {
   transform: translate(3px, 3px);
 }
+
+div:hover {
+  cursor: pointer;
+}

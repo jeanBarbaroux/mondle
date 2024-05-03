@@ -1,11 +1,11 @@
 <div class="container">
   <div class="indications" *ngIf="countriesTried.length > 0">
-    <span>{{ "INDICATION.CONTINENT" | translate }}</span>
-    <span>{{ "INDICATION.AREA" | translate }}</span>
-    <span>{{ "INDICATION.POPULATION" | translate }}</span>
-    <span>{{ "INDICATION.PHONE_CODE" | translate }}</span>
-    <span>{{ "INDICATION.LANGUAGES" | translate }}</span>
-    <span>{{ "INDICATION.COMMON_BORDERS" | translate }}</span>
+    <span class="indice">{{ "INDICATION.CONTINENT" | translate }}</span>
+    <span class="indice">{{ "INDICATION.AREA" | translate }}</span>
+    <span class="indice">{{ "INDICATION.POPULATION" | translate }}</span>
+    <span class="indice">{{ "INDICATION.PHONE_CODE" | translate }}</span>
+    <span class="indice">{{ "INDICATION.LANGUAGES" | translate }}</span>
+    <span class="indice">{{ "INDICATION.COMMON_BORDERS" | translate }}</span>
   </div>
   <div class="propositions">
     <app-compare-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-compare-country>
@@ -21,14 +21,14 @@
   </div>
   <div class="clues">
     <button [disabled]="deactivateFirst" class="firstClue clue" (click)="getCurrency()">
-      {{ this.currency | translate}}
+      {{ this.currency | translate}} <span *ngIf="this.count < 5"> - {{ 5 - this.count}} </span>
     </button>
     <button [disabled]="deactivateSecond" class="secondClue clue" (click)="getCapital()">
-      {{ this.capital | translate}}
+      {{ this.capital | translate}} <span *ngIf="this.count < 10"> - {{ 10 - this.count}} </span>
     </button>
     <button [disabled]="deactivateThird" class="thirdClue clue" (click)="getFlag()">
       <img ngSrc="{{flagHtml}}"/>
-      {{ this.flag | translate}}
+      {{ this.flag | translate}} <span *ngIf="this.count < 15"> - {{ 15 - this.count}} </span>
     </button>
   </div>
 </div>
