@@ -11,6 +11,7 @@ import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {LangService} from "../../../services/lang.service";
 import {SafeHtml} from "@angular/platform-browser";
+import {InputComponent} from "../../../core/components/input/input.component";
 
 @Component({
   selector: 'app-country',
@@ -26,12 +27,13 @@ import {SafeHtml} from "@angular/platform-browser";
     NgIf,
     TranslateModule,
     NgOptimizedImage,
+    InputComponent,
   ],
   providers: [CountryService, LocalStorageService]
 })
 export class CountryComponent implements OnInit {
-
   countries: string[] = [];
+  selectedCountry: string = '';
   countriesTried: CountryGuessed[] = [];
   allCountries: string[] = [];
   allCountriesEn: string[] = [];
@@ -44,6 +46,7 @@ export class CountryComponent implements OnInit {
   deactivateThird: boolean = true;
   flagHtml: SafeHtml = ''
 
+  @ViewChild(InputComponent) inputComponent!: InputComponent;
   currency = 'CLUE.CURRENCY';
   capital = 'CLUE.CAPITAL';
   flag = 'CLUE.FLAG';
@@ -102,7 +105,6 @@ export class CountryComponent implements OnInit {
       .subscribe((filteredCountries) => {
         this.countries = filteredCountries;
       });
-    this.scrollToBottom()
     this.countriesTriedChangeSubscription = this.langService.countriesTriedChange.subscribe((countriesTried) => {
       this.countriesTried = countriesTried;
     })
@@ -131,7 +133,9 @@ export class CountryComponent implements OnInit {
   selectCountry(country: string) {
     this.countryService.getCountryGuessed(country)
       .subscribe((countryGuessed) => {
+        this.countriesTried.reverse()
         this.countriesTried.push(countryGuessed);
+        this.countriesTried.reverse()
         this.countryFound = countryGuessed.success;
         this.langService.countryFoundChange.emit(this.countryFound);
         this.localStorageService.setItem('countriesTried', this.countriesTried);
@@ -147,21 +151,11 @@ export class CountryComponent implements OnInit {
           this.countryControl.setValue('');
         }
       });
-    this.scrollToBottom();
     this.count++;
     this.checkCountry();
     this.localStorageService.setItem('count', this.count);
     this.countryControl.setValue('');
-  }
-
-  scrollToBottom(): void {
-    setTimeout(() => {
-      const elements = document.querySelectorAll('.propositions app-compare-country');
-      const lastElement = elements[elements.length - 1];
-      if (lastElement) {
-        lastElement.scrollIntoView({behavior: 'smooth'});
-      }
-    }, 100);
+    this.inputComponent.reset()
   }
 
   checkCountry() {

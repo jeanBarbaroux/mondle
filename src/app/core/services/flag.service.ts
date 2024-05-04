@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable, switchMap} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {Country} from '../models/country.model';
 import {CountryGuessed} from '../models/countryGuessed.model';
 
@@ -11,7 +11,8 @@ export class FlagService {
   private api = "https://epitaide.com/mondle" // Uncomment this line to use the remote API
   //private api = "http://localhost:7299" // Uncomment this line to use the local API
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getAllCountries(filter: string = ''): Observable<string[]> {
     return this.http.get<string[]>(`${this.api}/api/Countries/autocomplete/data/fr`)
@@ -25,9 +26,6 @@ export class FlagService {
   }
 
   getFlagOfTheDay(): Observable<string> {
-  return this.http.get(`${this.api}/api/Flag/flagOfDay`, { responseType: 'text' })
-    .pipe(
-      switchMap(url => this.http.get(url, { responseType: 'text' }))
-    );
-}
+    return this.http.get(`${this.api}/api/Flag/flagOfDay`, {responseType: 'text'})
+  }
 }

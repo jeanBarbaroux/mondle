@@ -1,56 +1,65 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import { CountryService } from '../../services/country.service';
-import { filter, map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
+import {AsyncPipe, NgForOf} from "@angular/common";
+import {MatInput} from "@angular/material/input";
 import {TranslateModule} from "@ngx-translate/core";
+import {CountryService} from "../../services/country.service";
 
 @Component({
   selector: 'app-input',
-  templateUrl: './input.component.html',
+  templateUrl: 'input.component.html',
   standalone: true,
   imports: [
+    MatLabel,
+    MatAutocompleteTrigger,
+    MatAutocomplete,
+    AsyncPipe,
+    MatOption,
+    MatInput,
+    MatFormField,
+    TranslateModule,
     ReactiveFormsModule,
-    TranslateModule
+    NgForOf
   ],
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['input.component.scss']
 })
 export class InputComponent implements OnInit {
-  @Output() countrySelected = new EventEmitter<string>();
-  countryControl = new FormControl('');
-  countries: string[] = [];
-  allCountries: string[] = [];
+  options: string[] = ['One', 'Two', 'Three'];
+  myControl = new FormControl();
+  filteredOptions!: Observable<string[]>;
 
-  constructor(private countryService: CountryService) {}
+  @Output() countrySelected = new EventEmitter<string>();
+
+  constructor(private countryService: CountryService) {
+  }
 
   ngOnInit() {
-    this.countryService.getAllCountries()
-      .subscribe((countryList) => {
-        this.allCountries = countryList.sort();
-      });
+    this.countryService.getAllCountries().subscribe((countries) => {
+      countries.sort()
+      this.options = countries;
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
 
-    this.countryControl.valueChanges
-      .pipe(
-        filter(value => value !== null && value !== ''),
-        map(value => {
-          if (!value)
-            return this.allCountries;
-          return this.filterCountries(value);
+      this.myControl.valueChanges.subscribe((value) => {
+        this.countrySelected.emit(value);
         })
-      )
-      .subscribe((filteredCountries) => {
-        this.countries = filteredCountries;
-      });
+    })
   }
 
-  filterCountries(filter: string): string[] {
-    const normalizedFilter = filter.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-    return this.allCountries.filter(country =>
-      country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(normalizedFilter)
-    );
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  selectCountry(country: string) {
-    this.countrySelected.emit(country);
-    this.countryControl.setValue('');
+  reset() {
+    //reset the value contained in the input
+    this.myControl.setValue('');
   }
 }

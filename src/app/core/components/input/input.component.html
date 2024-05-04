@@ -1,7 +1,14 @@
-<div class="countries">
-  <div *ngIf="countryControl.value">
-    <div *ngFor="let country of countries">
-      <button (click)="selectCountry(country)">{{ country }}</button>
-    </div>
-  </div>
-</div>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'COUNTRY.SEARCH' | translate}}</mat-label>
+    <input type="text"
+           matInput
+           [matAutocomplete]="auto"
+           [formControl]="myControl">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

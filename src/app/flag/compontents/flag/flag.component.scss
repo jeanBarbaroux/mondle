@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-top: 10px;
+}
+
+.input {
+  width: 380px;
+  padding: 10px;
+  height: 40px;
+  border: 2px solid #0B2447;
+  border-top: none;
+  border-bottom: none;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 7px 7px 0px 0px #0B2447;
+  margin-bottom: 10px;
+}
+
+.input-container .topline, .input-container .underline {
+  position: absolute;
+  content: "";
+  background-color: #0B2447;
+  height: 2px;
+  right: 0;
+}
+
+.topline {
+  top: 0;
+}
+
+.underline {
+  bottom: 0;
+}
+
+.countries {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 30vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+img {
+  max-height: 200px;
+}
+

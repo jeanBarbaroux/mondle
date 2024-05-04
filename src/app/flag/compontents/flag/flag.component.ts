@@ -7,6 +7,7 @@ import {FlagService} from "../../../core/services/flag.service";
 import {LangService} from "../../../services/lang.service";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import {MatLabel, MatFormField} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-flag',
@@ -18,11 +19,13 @@ import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
     NgIf,
     NgOptimizedImage,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatLabel,
+    MatFormField
   ],
   templateUrl: './flag.component.html',
   styleUrl: './flag.component.scss',
-  providers: [FlagService, LangService, LocalStorageService]
+  providers: [FlagService, LangService, LocalStorageService],
 })
 export class FlagComponent {
   countries: string[] = [];
@@ -44,7 +47,7 @@ export class FlagComponent {
           this.countries = countryList.sort();
         }
         this.flagService.getFlagOfTheDay().subscribe((flagSvgData) => {
-          this.flagHtml = this.sanitizer.bypassSecurityTrustHtml(flagSvgData);
+          this.flagHtml = flagSvgData;
         });
       });
   }
