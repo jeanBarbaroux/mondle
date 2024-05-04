@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {CompareCountryComponent} from "../../../country/components/compare-country/compare-country.component";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
@@ -8,6 +8,9 @@ import {LangService} from "../../../services/lang.service";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 import {MatLabel, MatFormField} from "@angular/material/form-field";
+import {InputComponent} from "../../../core/components/input/input.component";
+import {CountryService} from "../../../core/services/country.service";
+import {GuessedCountryComponent} from "../../components/guessed-country/guessed-country.component";
 
 @Component({
   selector: 'app-flag',
@@ -21,17 +24,21 @@ import {MatLabel, MatFormField} from "@angular/material/form-field";
     TranslateModule,
     ReactiveFormsModule,
     MatLabel,
-    MatFormField
+    MatFormField,
+    InputComponent,
+    GuessedCountryComponent
   ],
   templateUrl: './flag.component.html',
   styleUrl: './flag.component.scss',
-  providers: [FlagService, LangService, LocalStorageService],
+  providers: [FlagService, LangService, LocalStorageService, CountryService],
 })
 export class FlagComponent {
   countries: string[] = [];
+  countriesTried: string[] = [];
   countryFound: boolean = false;
-  countryControl = new FormControl({value: '', disabled: this.countryFound});
+  selectedCountry: string = '';
   flagHtml: SafeHtml = '';
+  @ViewChild(InputComponent) inputComponent!: InputComponent;
 
   constructor(private flagService: FlagService, private langService: LangService, private localStorageService: LocalStorageService, private sanitizer: DomSanitizer ) {
   }
@@ -53,6 +60,12 @@ export class FlagComponent {
   }
 
   selectCountry(string: string) {
-    return false;
+    if (string === '') {
+      return
+    }
+    this.countriesTried.reverse();
+    this.countriesTried.push(string);
+    this.countriesTried.reverse();
+      this.inputComponent.reset();
   }
 }

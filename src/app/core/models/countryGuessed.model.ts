@@ -1,14 +1,15 @@
 export interface InformationGuess {
-    field: string;
-    informations: string[];
-    color: string;
-    direction?: string | null;
+  field: string;
+  informations: string[];
+  color: string;
+  direction?: string | null;
 }
 
 export interface CountryGuessed {
-    name: string;
-    success: boolean;
-    countryGuessed: string;
-    countryGuessEnglish: string;
-    informationGuesses: InformationGuess[];
+  result: boolean; // SHOULD BE REMOVED
+  name: string;
+  success: boolean;
+  countryGuessed: string;
+  countryGuessEnglish: string;
+  informationGuesses: InformationGuess[];
 }

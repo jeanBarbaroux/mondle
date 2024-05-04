@@ -1,18 +1,15 @@
 <div class="container">
-  <div class="input-container">
-    <app-input (countrySelected)="selectedCountry = $event"></app-input>
-    <button class="submit" (click)="selectCountry(selectedCountry)">{{ "SUBMIT" | translate }}</button>
-  </div>
+  <app-input (countrySelected)="selectedCountry = $event" (keydown.enter)="selectCountry(selectedCountry)"></app-input>
   <div class="clues">
     <button [disabled]="deactivateFirst" class="firstClue clue" (click)="getCurrency()">
-      {{ this.currency | translate}} <span *ngIf="this.count < 5"> - {{ 5 - this.count}} </span>
+      {{ this.currency | translate }} <span *ngIf="this.count < 5"> - {{ 5 - this.count }} </span>
     </button>
     <button [disabled]="deactivateSecond" class="secondClue clue" (click)="getCapital()">
-      {{ this.capital | translate}} <span *ngIf="this.count < 10"> - {{ 10 - this.count}} </span>
+      {{ this.capital | translate }} <span *ngIf="this.count < 10"> - {{ 10 - this.count }} </span>
     </button>
     <button [disabled]="deactivateThird" class="thirdClue clue" (click)="getFlag()">
-      <img ngSrc="{{flagHtml}}"/>
-      {{ this.flag | translate}} <span *ngIf="this.count < 15"> - {{ 15 - this.count}} </span>
+      <img [ngSrc]="flagHtml"/>
+      {{ this.flag | translate }} <span *ngIf="this.count < 15"> - {{ 15 - this.count }} </span>
     </button>
   </div>
   <div class="indications" *ngIf="countriesTried.length > 0">

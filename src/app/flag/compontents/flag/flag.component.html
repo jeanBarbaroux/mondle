@@ -1,19 +1,5 @@
 <div class="container">
-  <img [src]="flagHtml" alt="guess this flag"/>
-  <div class="input-container">
-    <input (keyup.enter)="countryControl.value != '' && selectCountry(countries[0])"
-           [formControl]="countryControl"
-           [placeholder]="'COUNTRY.SEARCH' | translate"
-           [disabled]="countryFound"
-           class="input" type="text">
-    <div class="topline"></div>
-    <div class="underline"></div>
-  </div>
-  <div class="countries">
-    <div *ngIf="countryControl.value">
-      <div *ngFor="let country of countries">
-        <button (click)="selectCountry(country)">{{ country }}</button>
-      </div>
-    </div>
-  </div>
+  <img ngSrc="{{flagHtml}}" alt="flag" />
+  <app-input (countrySelected)="selectedCountry = $event" (keydown.enter)="selectCountry(selectedCountry)"></app-input>
+  <app-guessed-country *ngFor="let country of countriesTried" [countryGuessed]="country"></app-guessed-country>
 </div>

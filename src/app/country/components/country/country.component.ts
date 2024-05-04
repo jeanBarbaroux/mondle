@@ -131,6 +131,9 @@ export class CountryComponent implements OnInit {
   }
 
   selectCountry(country: string) {
+    if (country === '') {
+      return
+    }
     this.countryService.getCountryGuessed(country)
       .subscribe((countryGuessed) => {
         this.countriesTried.reverse()
