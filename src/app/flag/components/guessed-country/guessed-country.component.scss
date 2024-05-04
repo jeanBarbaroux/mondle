@@ -7,6 +7,22 @@
   border-radius: 5px;
   margin: 5px;
   background: lightgrey;
+  animation: appear 1s ease-out forwards;
+  backface-visibility: hidden;
+}
+
+@keyframes appear {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
 }
 
 .name {
