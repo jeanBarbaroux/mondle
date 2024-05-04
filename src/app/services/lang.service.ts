@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {LocalStorageSubject} from "../observables/local-storage-subject";
 import {Subject} from 'rxjs';
 import {CountryGuessed} from "../core/models/countryGuessed.model";
@@ -19,7 +19,7 @@ export class LangService {
   langChange: Subject<Lang> = new Subject<Lang>();
   countChange: Subject<number> = new Subject<number>();
   countryFound: LocalStorageSubject<boolean> = new LocalStorageSubject<boolean>('countryFound', false, true);
-  countryFoundChange: Subject<boolean> = new Subject<boolean>();
+  countryFoundChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', (event) => {

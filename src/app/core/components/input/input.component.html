@@ -1,0 +1,7 @@
+<div class="countries">
+  <div *ngIf="countryControl.value">
+    <div *ngFor="let country of countries">
+      <button (click)="selectCountry(country)">{{ country }}</button>
+    </div>
+  </div>
+</div>

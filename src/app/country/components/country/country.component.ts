@@ -76,8 +76,14 @@ export class CountryComponent implements OnInit {
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
-    this
     // Ne pas mettre if (this.countryFound) car si nouveau jour alors countryFound = [] donc true
+    this.langService.countryFoundChange.subscribe((countryFound) => {
+      if(countryFound) {
+        this.countryControl.disable();
+      } else {
+        this.countryControl.enable();
+      }
+    });
     if (this.countryFound === true) {
       this.countryControl.disable();
     } else {
@@ -127,6 +133,7 @@ export class CountryComponent implements OnInit {
       .subscribe((countryGuessed) => {
         this.countriesTried.push(countryGuessed);
         this.countryFound = countryGuessed.success;
+        this.langService.countryFoundChange.emit(this.countryFound);
         this.localStorageService.setItem('countriesTried', this.countriesTried);
         if (this.countryFound) {
           this.localStorageService.setItem('countryFound', this.countryFound);
