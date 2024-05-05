@@ -35,7 +35,6 @@ import {GuessedCountryComponent} from "../../components/guessed-country/guessed-
 export class FlagComponent {
   countries: string[] = [];
   flagsTried: string[] = [];
-  countryFound: boolean = false;
   selectedCountry: string = '';
   flagHtml: SafeHtml = '';
   FlagCount: number = 0;
@@ -47,6 +46,9 @@ export class FlagComponent {
   }
 
   ngOnInit() {
+    this.langService.flagTried.subscribe((flagsTried) => {
+      this.flagsTried = this.localStorageService.getItem('flagsTried')
+    });
     this.flagsTried = this.localStorageService.getItem('flagsTried');
     this.FlagCount = this.localStorageService.getItem('FlagCount');
     this.localStorageService.resetAtMidnight();
@@ -65,7 +67,8 @@ export class FlagComponent {
   }
 
   selectCountry(string: string) {
-    if (string === '') {
+    let flagFound = this.localStorageService.getItem('flagFound');
+    if (string === '' || flagFound === true) {
       return
     }
     this.flagsTried.reverse();
@@ -75,5 +78,6 @@ export class FlagComponent {
     this.FlagCount++;
     this.localStorageService.setItem('flagsTried', this.flagsTried);
     this.localStorageService.setItem('FlagCount', this.FlagCount);
+    this.langService.flagTried.next(this.flagsTried);
   }
 }

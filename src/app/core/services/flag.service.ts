@@ -21,6 +21,13 @@ export class FlagService {
       );
   }
 
+  getAllCountriesEn(filter: string = ''): Observable<string[]> {
+    return this.http.get<string[]>(`${this.api}/api/Game/autocomplete/data/en`)
+      .pipe(
+        map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
+      );
+  }
+
   getCountryGuessed(country: string): Observable<CountryGuessed> {
     return this.http.get<CountryGuessed>(`${this.api}/api/Game/guess/flag/${country}`);
   }

@@ -4,6 +4,7 @@ import {LangService} from "../../../services/lang.service";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {NgIf, NgStyle} from "@angular/common";
+import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 
 @Component({
   selector: 'app-guessed-country',
@@ -17,15 +18,27 @@ import {NgIf, NgStyle} from "@angular/common";
 })
 export class GuessedCountryComponent {
   @Input() countryGuessed!: string;
-  countryFound: boolean = false;
+  flagName!: CountryGuessed;
+  flagFound: boolean = false;
 
   constructor(private flagService: FlagService, private langService: LangService, private localStorageService: LocalStorageService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
     this.flagService.getCountryGuessed(this.countryGuessed).subscribe((countryGuessed) => {
-      this.countryFound = countryGuessed.success
+        this.flagFound = countryGuessed.success
+        this.flagName = countryGuessed
+        this.localStorageService.setItem('flagFound', this.flagFound)
+
+        if (this.flagFound) {
+          this.localStorageService.setItem('allFlags', [])
+        }
       }
     )
+  }
+
+  get displayFlagName() {
+    const lang = this.localStorageService.getItem('settings.lang');
+    return lang === 'fr' ? this.flagName.countryGuessed : this.flagName.countryGuessEnglish;
   }
 }

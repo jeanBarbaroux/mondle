@@ -48,7 +48,7 @@ export class InputComponent implements OnInit {
 
       this.myControl.valueChanges.subscribe((value) => {
         this.countrySelected.emit(value);
-        })
+      })
     })
   }
 

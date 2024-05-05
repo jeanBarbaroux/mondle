@@ -18,7 +18,7 @@ export class CountryService {
     return this.http.get<string[]>(`${this.api}/api/Game/autocomplete/data/fr`)
       .pipe(
         map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
-      );
+      )
   }
 
   getAllCountriesEn(filter: string = ''): Observable<string[]> {
