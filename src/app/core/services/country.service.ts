@@ -15,32 +15,32 @@ export class CountryService {
   }
 
   getAllCountries(filter: string = ''): Observable<string[]> {
-    return this.http.get<string[]>(`${this.api}/api/Countries/autocomplete/data/fr`)
+    return this.http.get<string[]>(`${this.api}/api/Game/autocomplete/data/fr`)
       .pipe(
         map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
       );
   }
 
   getAllCountriesEn(filter: string = ''): Observable<string[]> {
-    return this.http.get<string[]>(`${this.api}/api/Countries/autocomplete/data/en`)
+    return this.http.get<string[]>(`${this.api}/api/Game/autocomplete/data/en`)
       .pipe(
         map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
       );
   }
 
   getCountryGuessed(country: string): Observable<CountryGuessed> {
-    return this.http.get<CountryGuessed>(`${this.api}/api/Countries/guess/${country}`);
+    return this.http.get<CountryGuessed>(`${this.api}/api/Game/guess/country/${country}`);
   }
 
   getCurrencies(): Observable<string> {
-    return this.http.get(`${this.api}/api/Countries/clue/currency`, {responseType: 'text'});
+    return this.http.get(`${this.api}/api/Game/clue/currency`, {responseType: 'text'});
   }
 
   getCapitals(): Observable<string> {
-    return this.http.get(`${this.api}/api/Countries/clue/capital`, {responseType: 'text'});
+    return this.http.get(`${this.api}/api/Game/clue/capital`, {responseType: 'text'});
   }
 
   getFlags(): Observable<string> {
-    return this.http.get(`${this.api}/api/Countries/clue/flag`, {responseType: 'text'});
+    return this.http.get(`${this.api}/api/Game/clue/flag`, {responseType: 'text'});
   }
 }

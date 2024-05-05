@@ -15,17 +15,17 @@ export class FlagService {
   }
 
   getAllCountries(filter: string = ''): Observable<string[]> {
-    return this.http.get<string[]>(`${this.api}/api/Countries/autocomplete/data/fr`)
+    return this.http.get<string[]>(`${this.api}/api/Game/autocomplete/data/fr`)
       .pipe(
         map(countries => countries.filter(country => country.toLowerCase().includes(filter.toLowerCase())))
       );
   }
 
   getCountryGuessed(country: string): Observable<CountryGuessed> {
-    return this.http.get<CountryGuessed>(`${this.api}/api/Flag/guess/${country}`);
+    return this.http.get<CountryGuessed>(`${this.api}/api/Game/guess/flag/${country}`);
   }
 
   getFlagOfTheDay(): Observable<string> {
-    return this.http.get(`${this.api}/api/Flag/flagOfDay`, {responseType: 'text'})
+    return this.http.get(`${this.api}/api/Game/flagOfDay`, {responseType: 'text'})
   }
 }

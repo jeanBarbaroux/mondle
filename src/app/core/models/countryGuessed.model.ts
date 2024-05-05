@@ -6,7 +6,6 @@ export interface InformationGuess {
 }
 
 export interface CountryGuessed {
-  result: boolean; // SHOULD BE REMOVED
   name: string;
   success: boolean;
   countryGuessed: string;

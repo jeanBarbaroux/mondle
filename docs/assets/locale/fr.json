@@ -1,0 +1,24 @@
+{
+  "HOME": {
+    "COUNTRY_BUTTON": "Pays du jour",
+    "FLAG_BUTTON": "Drapeau du jour",
+    "CAPITAL_BUTTON": "Capitale du jour"
+  },
+  "COUNTRY": {
+    "SEARCH": "Entrer un pays"
+  },
+  "INDICATION": {
+    "CONTINENT": "Continent",
+    "AREA": "Superficie",
+    "POPULATION": "Population",
+    "PHONE_CODE": "Indicatif téléphonique",
+    "LANGUAGES": "Langues",
+    "COMMON_BORDERS": "Frontières communes"
+  },
+  "CLUE": {
+    "CAPITAL": "Capitale",
+    "FLAG": "Drapeau",
+    "CURRENCY": "Monnaie"
+  }
+}
+

@@ -24,7 +24,7 @@ export class GuessedCountryComponent {
 
   ngOnInit() {
     this.flagService.getCountryGuessed(this.countryGuessed).subscribe((countryGuessed) => {
-      this.countryFound = countryGuessed.result
+      this.countryFound = countryGuessed.success
       }
     )
   }
