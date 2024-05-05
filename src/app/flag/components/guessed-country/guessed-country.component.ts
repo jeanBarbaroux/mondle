@@ -38,6 +38,9 @@ export class GuessedCountryComponent {
   }
 
   get displayFlagName() {
+    if (typeof this.flagName === 'undefined') {
+      return
+    }
     const lang = this.localStorageService.getItem('settings.lang');
     return lang === 'fr' ? this.flagName.countryGuessed : this.flagName.countryGuessEnglish;
   }

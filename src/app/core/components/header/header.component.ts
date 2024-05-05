@@ -39,5 +39,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.translate.use(lang);
     this.localstorageService.setItem('settings.lang', lang);
     this.langService.lang.next(lang);
+    this.langService.langChange.next(lang);
   }
 }
