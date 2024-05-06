@@ -1,5 +1,9 @@
 <div class="container">
-  <app-input (countrySelected)="selectedCountry = $event" (keydown.enter)="selectCountry(selectedCountry)"></app-input>
+  <div class="input">
+    <app-input (countrySelected)="selectedCountry = $event"
+               (keydown.enter)="selectCountry(selectedCountry)"></app-input>
+    <button (click)="selectCountry(selectedCountry)">SUBMIT</button>
+  </div>
   <div class="clues">
     <button [disabled]="deactivateFirst" class="firstClue clue" (click)="getCurrency()">
       {{ this.currency | translate }} <span *ngIf="this.count < 5"> - {{ 5 - this.count }} </span>
