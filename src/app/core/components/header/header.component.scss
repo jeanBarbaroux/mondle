@@ -36,3 +36,13 @@ span {
 div:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 700px) {
+  .container {
+    margin-bottom: 10px;
+  }
+
+  svg {
+    height: 40px;
+  }
+}
