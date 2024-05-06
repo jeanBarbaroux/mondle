@@ -59,10 +59,9 @@ button {
 }
 
 .clue {
-  width: 100px;
+  width: 120px;
   border-radius: 5px;
   box-shadow: 7px 7px 0px 0px #0B2447;
-
 }
 
 .clue:active:not(:disabled) {
@@ -88,6 +87,12 @@ img {
   width: 70px;
   height: 50px;
   border-radius: 5px;
+  box-shadow: 7px 7px 0px 0px #0B2447;
+}
+
+.submit:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
 }
 
 .input {
@@ -95,6 +100,59 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  margin-bottom: 5px;
+  background-color: lightgrey;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.legend-items {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 350px;
+  align-items: center;
+}
+
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+}
+
+.legend-red {
+  background-color: red;
+}
+
+.legend-green {
+  background-color: green;
+}
+
+.legend-orange {
+  background-color: orange;
+}
+
+.legend-text {
+  font-size: 13px;
+  width: 80px;
+  text-align: center;
+}
+
+.arrow {
+  position: absolute;
+  opacity: 0.2;
+}
+
+.down {
+  rotate: 180deg;
 }
 
 @media screen and (max-width: 700px) {

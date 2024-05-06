@@ -19,5 +19,12 @@
     "CAPITAL": "Capital",
     "FLAG": "Flag",
     "CURRENCY": "Currency"
+  },
+  "LEGEND": {
+    "CORRECT": "Correct",
+    "WRONG": "Wrong",
+    "CLOSE": "Close",
+    "UPPER": "Upper",
+    "LOWER": "Lower"
   }
 }

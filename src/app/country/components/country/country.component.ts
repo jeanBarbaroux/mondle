@@ -1,18 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import {filter, Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {ReactiveFormsModule} from '@angular/forms';
 import {CountryService} from '../../../core/services/country.service';
 import {CompareCountryComponent} from "../compare-country/compare-country.component";
 import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {TranslateModule} from "@ngx-translate/core";
-import {CountryGuessed} from "../../../core/models/countryGuessed.model";
+import {CountryGuessed, InformationGuess} from "../../../core/models/countryGuessed.model";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {LangService} from "../../../services/lang.service";
-import {SafeHtml} from "@angular/platform-browser";
 import {InputComponent} from "../../../core/components/input/input.component";
-import {computeStartOfLinePositions} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/source_file";
+import {ComparedItemComponent} from "../compared-item/compared-item.component";
 
 @Component({
   selector: 'app-country',
@@ -29,19 +26,15 @@ import {computeStartOfLinePositions} from "@angular/compiler-cli/src/ngtsc/sourc
     TranslateModule,
     NgOptimizedImage,
     InputComponent,
+    ComparedItemComponent,
   ],
   providers: [CountryService, LocalStorageService]
 })
 export class CountryComponent implements OnInit {
-  countries: string[] = [];
   selectedCountry: string = '';
   countriesTried: CountryGuessed[] = [];
   allCountries: string[] = [];
-  allCountriesEn: string[] = [];
   countryFound: boolean = false;
-  countryControl = new FormControl({value: '', disabled: this.countryFound});
-  private countriesTriedChangeSubscription!: Subscription;
-  private countChangeSubscription!: Subscription;
   deactivateFirst: boolean = true;
   deactivateSecond: boolean = true;
   deactivateThird: boolean = true;
@@ -55,7 +48,8 @@ export class CountryComponent implements OnInit {
 
   @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
-  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService) {
+  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService
+  ) {
   }
 
   ngOnInit() {
@@ -64,16 +58,11 @@ export class CountryComponent implements OnInit {
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
 
-    this.countriesTriedChangeSubscription = this.langService.countriesTriedChange.subscribe((countriesTried) => {
-      this.countriesTried = countriesTried;
-    })
-    this.countChangeSubscription = this.langService.countChange.subscribe((count) => {
-      this.count = count;
-    });
     this.checkCountry();
   }
 
-  selectCountry(country: string) {
+  selectCountry(country: string
+  ) {
     if (country === '' || this.countryFound) {
       return
     }

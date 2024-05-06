@@ -19,6 +19,13 @@
     "CAPITAL": "Capitale",
     "FLAG": "Drapeau",
     "CURRENCY": "Monnaie"
+  },
+  "LEGEND": {
+    "CORRECT": "Correct",
+    "WRONG": "Faux",
+    "CLOSE": "Proche",
+    "UPPER": "Plus grand",
+    "LOWER": "Plus petit"
   }
 }
 
