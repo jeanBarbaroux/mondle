@@ -1,11 +1,11 @@
 {
   "HOME": {
     "COUNTRY_BUTTON": "Pays du jour",
-    "FLAG_BUTTON": "Drapeau du jour",
-    "CAPITAL_BUTTON": "Capitale du jour"
+    "FLAG_BUTTON": "Drapeau du jour"
   },
   "COUNTRY": {
-    "SEARCH": "Entrer un pays"
+    "SEARCH": "Entrer un pays",
+    "GUESS": "Deviner"
   },
   "INDICATION": {
     "CONTINENT": "Continent",

@@ -73,7 +73,6 @@ export class InputComponent implements OnInit {
   }
 
   reset() {
-    //reset the value contained in the input
     this.myControl.setValue('');
   }
 }

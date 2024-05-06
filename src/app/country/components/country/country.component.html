@@ -2,7 +2,7 @@
   <div class="input">
     <app-input (countrySelected)="selectedCountry = $event"
                (keydown.enter)="selectCountry(selectedCountry)"></app-input>
-    <button (click)="selectCountry(selectedCountry)">SUBMIT</button>
+    <button (click)="selectCountry(selectedCountry)" class="submit">{{ "COUNTRY.GUESS" | translate}}</button>
   </div>
   <div class="clues">
     <button [disabled]="deactivateFirst" class="firstClue clue" (click)="getCurrency()">

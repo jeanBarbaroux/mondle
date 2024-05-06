@@ -45,7 +45,7 @@ export class CountryComponent implements OnInit {
   deactivateFirst: boolean = true;
   deactivateSecond: boolean = true;
   deactivateThird: boolean = true;
-  flagHtml: SafeHtml = ''
+  flagHtml!: string;
 
   @ViewChild(InputComponent) inputComponent!: InputComponent;
   currency = 'CLUE.CURRENCY';
@@ -60,9 +60,6 @@ export class CountryComponent implements OnInit {
 
   ngOnInit() {
     this.localStorageService.resetAtMidnight();
-    this.countryService.getAllCountries().subscribe((countryList) => {
-      this.allCountries = this.localStorageService.getItem('allCountries');
-    });
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
@@ -74,15 +71,6 @@ export class CountryComponent implements OnInit {
       this.count = count;
     });
     this.checkCountry();
-  }
-
-  ngOnDestroy() {
-    if (this.countriesTriedChangeSubscription) {
-      this.countriesTriedChangeSubscription.unsubscribe();
-    }
-    if (this.countChangeSubscription) {
-      this.countChangeSubscription.unsubscribe();
-    }
   }
 
   selectCountry(country: string) {
@@ -99,7 +87,6 @@ export class CountryComponent implements OnInit {
         if (this.countryFound) {
           this.localStorageService.setItem('countryFound', this.countryFound);
         }
-        this.localStorageService.setItem('allCountries', this.allCountries);
         this.langService.countryFoundChange.emit(this.countryFound);
         this.langService.countriesTried.next(this.countriesTried);
       });

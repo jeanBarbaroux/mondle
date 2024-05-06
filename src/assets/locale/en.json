@@ -1,11 +1,11 @@
 {
   "HOME": {
     "COUNTRY_BUTTON": "Country of the day",
-    "FLAG_BUTTON": "Flag of the day",
-    "CAPITAL_BUTTON": "Capital of the day"
+    "FLAG_BUTTON": "Flag of the day"
   },
   "COUNTRY": {
-    "SEARCH": "Search for a country"
+    "SEARCH": "Search for a country",
+    "GUESS": "Guess"
   },
   "INDICATION": {
     "CONTINENT": "Continent",

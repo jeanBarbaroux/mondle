@@ -29,10 +29,6 @@ export class GuessedCountryComponent {
         this.flagFound = countryGuessed.success
         this.flagName = countryGuessed
         this.localStorageService.setItem('flagFound', this.flagFound)
-
-        if (this.flagFound) {
-          this.localStorageService.setItem('allFlags', [])
-        }
       }
     )
   }
