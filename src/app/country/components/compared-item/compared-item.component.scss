@@ -65,8 +65,13 @@
   opacity: 0.7;
 }
 
+.up {
+  margin-bottom: 45px;
+}
+
 .down {
   rotate: 180deg;
+  margin-top: 45px;
 }
 
 .container {
@@ -99,6 +104,14 @@
   }
 
   svg {
-    height: 45px;
+    height: 20px;
+  }
+
+  .down {
+    margin-top: 30px;
+  }
+
+  .up {
+    margin-bottom: 30px;
   }
 }
