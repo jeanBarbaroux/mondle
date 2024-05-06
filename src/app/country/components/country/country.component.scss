@@ -27,7 +27,7 @@ button {
 }
 
 .indice {
-  width: 80px;
+  width: 90px;
   height: 40px;
   text-align: center;
   color: lightgray;
@@ -88,4 +88,15 @@ img {
 .submit {
   width: 90px;
   height: 50px;
+}
+
+@media screen and (max-width: 700px) {
+  .indice {
+    width: 45px;
+    font-size: 10px;
+  }
+
+  .indications {
+    width: 350px;
+  }
 }
