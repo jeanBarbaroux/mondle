@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  setItem(key: string, value: any) {
+  setItem(key: string, value: any) { // Ce any n’existe pas, c’est une illusion.
     localStorage.setItem(key, JSON.stringify(value));
   }
 
