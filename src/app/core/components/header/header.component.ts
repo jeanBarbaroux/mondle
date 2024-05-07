@@ -4,13 +4,15 @@ import { LocalStorageService } from "../../services/local-storage.service";
 import { LangService } from "../../../services/lang.service";
 import { Subscription } from 'rxjs';
 import {RouterLink} from "@angular/router";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgForOf
   ],
   styleUrls: ['./header.component.scss']
 })
@@ -41,4 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.langService.lang.next(lang);
     this.langService.langChange.next(lang);
   }
+
+  protected readonly history = history;
 }

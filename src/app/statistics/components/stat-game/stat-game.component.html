@@ -1,0 +1,17 @@
+<div class="container">
+  <div>
+    {{"STATISTICS.GAMES" | translate}} : {{ numberOfGames }}
+  </div>
+  <div>
+    {{"STATISTICS.WON" | translate}} : {{ numberOfWins }}
+  </div>
+  <div>
+    {{"STATISTICS.AVERAGE" | translate}} : {{ averageTries }}
+  </div>
+  <div>
+    ---
+  </div>
+  <div class="history">
+    <div *ngFor="let color of history" class="day" [style.background-color]="color"></div>
+  </div>
+</div>

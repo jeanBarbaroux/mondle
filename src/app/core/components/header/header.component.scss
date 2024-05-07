@@ -33,6 +33,10 @@ span {
   transform: translate(3px, 3px);
 }
 
+.statistics:active {
+  transform: translate(3px, 3px);
+}
+
 div:hover {
   cursor: pointer;
 }
@@ -42,7 +46,16 @@ div:hover {
     margin-bottom: 10px;
   }
 
+  span {
+    font-size: 20px;
+  }
+
   svg {
     height: 40px;
+  }
+
+  .dropdown-content > svg {
+    height: 30px;
+    width: 30px;
   }
 }

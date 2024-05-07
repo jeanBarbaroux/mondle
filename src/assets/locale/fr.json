@@ -26,6 +26,13 @@
     "CLOSE": "Proche",
     "UPPER": "Plus grand",
     "LOWER": "Plus petit"
+  },
+  "STATISTICS": {
+    "COUNTRIES": "Statistique des pays",
+    "FLAGS": "Statistique des drapeaux",
+    "GAMES": "Nombre de parties jouées",
+    "WON": "Nombre de parties gagnées",
+    "AVERAGE": "Moyenne d’essaie par jour"
   }
 }
 

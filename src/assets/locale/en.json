@@ -26,5 +26,12 @@
     "CLOSE": "Close",
     "UPPER": "Upper",
     "LOWER": "Lower"
+  },
+  "STATISTICS": {
+    "COUNTRIES": "Statistics by countries",
+    "FLAGS": "Statistics by flags",
+    "GAMES": "Number of games played",
+    "WON": "Number of games won",
+    "AVERAGE": "Average tries per day"
   }
 }

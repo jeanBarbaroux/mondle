@@ -48,16 +48,17 @@ export class CountryComponent implements OnInit {
 
   @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
-  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService
-  ) {
-  }
+  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService) {}
 
   ngOnInit() {
     this.localStorageService.resetAtMidnight();
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
-
+    let statistics = this.localStorageService.getItem('CountryStatistics')
+    if (statistics.length === 0 || statistics[statistics.length - 1].date !== new Date().toLocaleDateString()) {
+      this.localStorageService.setItem('CountryStatistics', [...statistics, {date: new Date().toLocaleDateString(), count: 0, success: false}]);
+    }
     this.checkCountry();
   }
 
@@ -80,6 +81,10 @@ export class CountryComponent implements OnInit {
         this.langService.countriesTried.next(this.countriesTried);
       });
     this.count++;
+    let statistics = this.localStorageService.getItem('CountryStatistics')
+    statistics[statistics.length - 1].count = this.count;
+    statistics[statistics.length - 1].success = this.countryFound;
+    this.localStorageService.setItem('CountryStatistics', statistics);
     this.checkCountry();
     this.localStorageService.setItem('count', this.count);
     this.inputComponent.reset()

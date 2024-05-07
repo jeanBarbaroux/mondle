@@ -64,6 +64,10 @@ export class FlagComponent {
           this.flagHtml = flagSvgData;
         });
       });
+    let statistics = this.localStorageService.getItem('FlagStatistics')
+    if (statistics.length === 0 || statistics[statistics.length - 1].date !== new Date().toLocaleDateString()) {
+      this.localStorageService.setItem('FlagStatistics', [...statistics, {date: new Date().toLocaleDateString(), count: 0, success: false}]);
+    }
   }
 
   selectCountry(string: string) {
@@ -79,5 +83,9 @@ export class FlagComponent {
     this.localStorageService.setItem('flagsTried', this.flagsTried);
     this.localStorageService.setItem('FlagCount', this.FlagCount);
     this.langService.flagTried.next(this.flagsTried);
+    let statistics = this.localStorageService.getItem('FlagStatistics')
+    statistics[statistics.length - 1].count = this.FlagCount;
+    statistics[statistics.length - 1].success = flagFound;
+    this.localStorageService.setItem('FlagStatistics', statistics);
   }
 }
