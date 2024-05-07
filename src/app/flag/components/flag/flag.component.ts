@@ -85,7 +85,6 @@ export class FlagComponent {
     this.langService.flagTried.next(this.flagsTried);
     let statistics = this.localStorageService.getItem('FlagStatistics')
     statistics[statistics.length - 1].count = this.FlagCount;
-    statistics[statistics.length - 1].success = flagFound;
     this.localStorageService.setItem('FlagStatistics', statistics);
   }
 }

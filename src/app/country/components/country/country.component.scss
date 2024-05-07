@@ -26,6 +26,7 @@ button {
 
 .indice {
   width: 90px;
+  background-color: #66666688;
   height: 40px;
   text-align: center;
   color: lightgray;
@@ -33,12 +34,11 @@ button {
   font-size: 13px;
   border-bottom: lightgray;
   border-bottom-style: solid;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   padding-bottom: 5px;
+  border-radius: 5px;
 }
 
 .indications {

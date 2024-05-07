@@ -79,12 +79,13 @@ export class CountryComponent implements OnInit {
         }
         this.langService.countryFoundChange.emit(this.countryFound);
         this.langService.countriesTried.next(this.countriesTried);
+        let statistics = this.localStorageService.getItem('CountryStatistics')
+        statistics[statistics.length - 1].count = this.count + 1;
+        console.log(this.countryFound)
+        statistics[statistics.length - 1].success = this.countryFound;
+        this.localStorageService.setItem('CountryStatistics', statistics);
       });
     this.count++;
-    let statistics = this.localStorageService.getItem('CountryStatistics')
-    statistics[statistics.length - 1].count = this.count;
-    statistics[statistics.length - 1].success = this.countryFound;
-    this.localStorageService.setItem('CountryStatistics', statistics);
     this.checkCountry();
     this.localStorageService.setItem('count', this.count);
     this.inputComponent.reset()

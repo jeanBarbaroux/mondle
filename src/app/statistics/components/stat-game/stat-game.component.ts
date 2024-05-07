@@ -22,6 +22,7 @@ export class StatGameComponent {
   numberOfWins: number = 0;
   averageTries: number = 0;
   history: string[] = [];
+  streak: number = 0;
 
   constructor(private localStorageService: LocalStorageService) {
   }
@@ -50,10 +51,17 @@ export class StatGameComponent {
       if (stat) {
         this.history.push(colorScale(stat.count));
       } else {
-        this.history.push('#FFFFFF'); // white color for count 0
+        this.history.push('#FFFFFF');
       }
     }
     this.history.reverse();
+    for (let i = this.history.length - 1; i > 0; i--) {
+      if (this.history[i] !== '#FFFFFF') {
+        this.streak++;
+      } else {
+        break;
+      }
+    }
   }
 
   protected readonly length = length;
