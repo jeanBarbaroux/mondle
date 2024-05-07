@@ -13,7 +13,7 @@ export class LocalStorageService {
   }
 
   clearItem() {
-    let itemToClear: string[] = ['countriesTried', 'count', 'flagsTried', 'flagCount']
+    let itemToClear: string[] = ['countriesTried', 'count', 'flagTried', 'flagsTried', 'flagCount']
     itemToClear.forEach((item) => {
       localStorage.setItem(item, JSON.stringify([]));
     })

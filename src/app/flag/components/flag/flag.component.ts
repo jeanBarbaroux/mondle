@@ -46,12 +46,12 @@ export class FlagComponent {
   }
 
   ngOnInit() {
+    this.localStorageService.resetAtMidnight();
     this.langService.flagTried.subscribe((flagsTried) => {
       this.flagsTried = this.localStorageService.getItem('flagsTried')
     });
     this.flagsTried = this.localStorageService.getItem('flagsTried');
     this.FlagCount = this.localStorageService.getItem('FlagCount');
-    this.localStorageService.resetAtMidnight();
     this.flagService.getAllCountries()
       .subscribe((countryList) => {
         let isLocalStorageEmpty = (this.localStorageService.getItem('allCountries')).length
