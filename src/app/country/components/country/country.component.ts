@@ -10,6 +10,7 @@ import {LocalStorageService} from "../../../core/services/local-storage.service"
 import {LangService} from "../../../services/lang.service";
 import {InputComponent} from "../../../core/components/input/input.component";
 import {ComparedItemComponent} from "../compared-item/compared-item.component";
+import {StatGameComponent} from "../../../statistics/components/stat-game/stat-game.component";
 
 @Component({
   selector: 'app-country',
@@ -27,6 +28,7 @@ import {ComparedItemComponent} from "../compared-item/compared-item.component";
     NgOptimizedImage,
     InputComponent,
     ComparedItemComponent,
+    StatGameComponent,
   ],
   providers: [CountryService, LocalStorageService]
 })
@@ -80,7 +82,7 @@ export class CountryComponent implements OnInit {
         this.langService.countryFoundChange.emit(this.countryFound);
         this.langService.countriesTried.next(this.countriesTried);
         let statistics = this.localStorageService.getItem('CountryStatistics')
-        statistics[statistics.length - 1].count = this.count + 1;
+        statistics[statistics.length - 1].count = this.count;
         console.log(this.countryFound)
         statistics[statistics.length - 1].success = this.countryFound;
         this.localStorageService.setItem('CountryStatistics', statistics);

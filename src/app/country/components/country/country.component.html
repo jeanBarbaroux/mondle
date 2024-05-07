@@ -16,7 +16,7 @@
       {{ this.flag | translate }} <span *ngIf="this.count < 15"> - {{ 15 - this.count }} </span>
     </button>
   </div>
-  <div class="legend" *ngIf="countriesTried.length > 0">
+  <div class="legend" *ngIf="countriesTried.length > 0 && !countryFound">
     <div class="legend-items">
       <div class="color legend-red"></div>
       <div class="color legend-orange"></div>
@@ -58,6 +58,7 @@
       <div class="legend-text">{{ "LEGEND.LOWER" | translate }}</div>
     </div>
   </div>
+  <app-stat-game [name]="'country'" *ngIf="countryFound"></app-stat-game>
   <div class="indications" *ngIf="countriesTried.length > 0">
     <span class="indice">{{ "INDICATION.CONTINENT" | translate }}</span>
     <span class="indice">{{ "INDICATION.AREA" | translate }}</span>
