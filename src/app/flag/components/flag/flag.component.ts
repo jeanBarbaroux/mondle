@@ -11,6 +11,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {InputComponent} from "../../../core/components/input/input.component";
 import {CountryService} from "../../../core/services/country.service";
 import {GuessedCountryComponent} from "../../components/guessed-country/guessed-country.component";
+import {StatGameComponent} from "../../../statistics/components/stat-game/stat-game.component";
 
 @Component({
   selector: 'app-flag',
@@ -26,7 +27,8 @@ import {GuessedCountryComponent} from "../../components/guessed-country/guessed-
     MatLabel,
     MatFormField,
     InputComponent,
-    GuessedCountryComponent
+    GuessedCountryComponent,
+    StatGameComponent
   ],
   templateUrl: './flag.component.html',
   styleUrl: './flag.component.scss',

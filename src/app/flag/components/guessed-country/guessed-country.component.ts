@@ -5,13 +5,15 @@ import {LocalStorageService} from "../../../core/services/local-storage.service"
 import {DomSanitizer} from "@angular/platform-browser";
 import {NgIf, NgStyle} from "@angular/common";
 import {CountryGuessed} from "../../../core/models/countryGuessed.model";
+import {StatGameComponent} from "../../../statistics/components/stat-game/stat-game.component";
 
 @Component({
   selector: 'app-guessed-country',
   standalone: true,
   imports: [
     NgStyle,
-    NgIf
+    NgIf,
+    StatGameComponent
   ],
   templateUrl: './guessed-country.component.html',
   styleUrl: './guessed-country.component.scss'
