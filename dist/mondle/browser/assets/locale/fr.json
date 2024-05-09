@@ -33,6 +33,16 @@
     "GAMES": "Nombre de parties jouées",
     "WON": "Nombre de parties gagnées",
     "AVERAGE": "Moyenne d’essais par jour"
+  },
+  "TUTORIAL": {
+    "WELCOME": "Bienvenue",
+    "HDIW": "Comment ça marche ?",
+    "DESCRIPTION": "Chaque jour, vous avez deux modes de jeu à votre disposition: le mode \"Pays du jour\" et le mode \"drapeau du jour\". Le pays et le drapeau changent chaque jour à minuit (heure française).",
+    "COTD": "Pays du jour",
+    "FOTD": "Drapeau du jour",
+    "STATS": "Statistiques",
+    "F_DESC": "Pas de panique, ce mode est bien plus simple. Le drapeau du jour est affiché en entier. Vous devez simplement désigner le nom de pays qui y correspond.",
+    "S_DESC": "Vous pouvez consulter vos statistiques à tout moment. Elles sont divisées en deux parties: les statistiques du mode \"Pays du jour\" et celles du mode \"Drapeau du jour\". Pour les deux modes, vous verrez les mêmes statistiques: le nombres de partie prises, le nombre de victoires et le nombre moyen d’essais par jour. Vous pourrez également observer le nombre de jours consécutifs que vous avez joué et une infographie représentant une échelle de vous nombre de tentatives par jour sur la dernière année"
   }
 }
 

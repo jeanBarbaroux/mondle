@@ -13,6 +13,7 @@ import {TranslateModule} from "@ngx-translate/core";
     NgIf,
     AnimatedElementComponent,
     TranslateModule,
+    AnimatedElementComponent,
   ],
 })
 export class TutorialsComponent  {

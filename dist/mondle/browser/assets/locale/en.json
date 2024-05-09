@@ -33,5 +33,15 @@
     "GAMES": "Number of games played",
     "WON": "Number of games won",
     "AVERAGE": "Average tries per day"
+  },
+  "TUTORIAL": {
+    "WELCOME": "Welcome",
+    "HDIW": "How does it work?",
+    "DESCRIPTION": "Every day, you can play two game modes: \"Country of the day\" and \"Flag of the day\". There is one flag and one country to guess per day. They will be reset at UTC+2. (midnight in France).",
+    "COTD": "Country of the day",
+    "FOTD": "Flag of the day",
+    "STATS": "Statistics",
+    "F_DESC": "Don't panic, this mode is much simpler. The day's flag is displayed in full. All you have to do is select the corresponding country name.",
+    "S_DESC": "You can consult your statistics at any time. They are divided into two parts: statistics for the “Country of the Day” mode and those for the “Flag of the Day” mode. For both modes, you'll see the same statistics: number of games played, number of victories and average number of tries per day. You can also see the number of consecutive days you've played, and an infographic showing a scale of your number of attempts per day over the last year."
   }
 }

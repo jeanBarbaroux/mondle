@@ -26,10 +26,10 @@ export const SlideInOutAnimation = [
         animate('1ms ease-in-out', style({
           'visibility': 'visible'
         })),
-        animate('300ms ease-in-out', style({
+        animate('50ms ease-in-out', style({
           'max-height': '500px'
         })),
-        animate('400ms ease-in-out', style({
+        animate('350ms ease-in-out', style({
           'opacity': '1'
         }))
       ]

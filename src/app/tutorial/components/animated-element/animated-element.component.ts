@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { SlideInOutAnimation } from './animation';
 import {NgClass, NgIf} from "@angular/common";
+import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-animated-element',
@@ -9,7 +10,8 @@ import {NgClass, NgIf} from "@angular/common";
   standalone: true,
   imports: [
     NgClass,
-    NgIf
+    NgIf,
+    TranslateModule
   ],
   animations: [SlideInOutAnimation]
 })
@@ -22,11 +24,16 @@ export class AnimatedElementComponent  {
 
   toggleShowDiv(divName: string) {
     if (divName === 'divA') {
-      if (AnimatedElementComponent.currentIn) {
-        AnimatedElementComponent.currentIn.animationState = 'out';
+      if (AnimatedElementComponent.currentIn === this) {
+        this.animationState = 'out';
+        AnimatedElementComponent.currentIn = null;
+      } else {
+        if (AnimatedElementComponent.currentIn) {
+          AnimatedElementComponent.currentIn.animationState = 'out';
+        }
+        this.animationState = 'in';
+        AnimatedElementComponent.currentIn = this;
       }
-      this.animationState = this.animationState === 'out' ? 'in' : 'out';
-      AnimatedElementComponent.currentIn = this.animationState === 'in' ? this : null;
     }
   }
 }
