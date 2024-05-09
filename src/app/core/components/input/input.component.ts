@@ -42,7 +42,6 @@ export class InputComponent implements OnInit {
   ngOnInit() {
     this.updateCountryList();
     this.langService.langChange.subscribe((newLang) => {
-      console.log('newLang', newLang)
       this.updateCountryList(newLang);
     });
   }

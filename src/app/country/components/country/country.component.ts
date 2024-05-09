@@ -83,7 +83,6 @@ export class CountryComponent implements OnInit {
         this.langService.countriesTried.next(this.countriesTried);
         let statistics = this.localStorageService.getItem('CountryStatistics')
         statistics[statistics.length - 1].count = this.count;
-        console.log(this.countryFound)
         statistics[statistics.length - 1].success = this.countryFound;
         this.localStorageService.setItem('CountryStatistics', statistics);
       });
