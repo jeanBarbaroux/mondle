@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AnimatedElementComponent } from './animated-element.component';
+import {AnimatedElementComponent} from './animated-element.component';
 
 describe('AnimatedElementComponent', () => {
   let component: AnimatedElementComponent;
@@ -10,8 +10,8 @@ describe('AnimatedElementComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AnimatedElementComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AnimatedElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

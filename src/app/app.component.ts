@@ -15,7 +15,8 @@ import {LocalStorageService} from "./core/services/local-storage.service";
 export class AppComponent implements OnInit {
   title = 'Mondle';
 
-  constructor(private translate: TranslateService, private localStorageService: LocalStorageService) {}
+  constructor(private translate: TranslateService, private localStorageService: LocalStorageService) {
+  }
 
   ngOnInit() {
     const lang = this.localStorageService.getItem('settings.lang');

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StatGameComponent } from './stat-game.component';
+import {StatGameComponent} from './stat-game.component';
 
 describe('StatGameComponent', () => {
   let component: StatGameComponent;
@@ -10,8 +10,8 @@ describe('StatGameComponent', () => {
     await TestBed.configureTestingModule({
       imports: [StatGameComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(StatGameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

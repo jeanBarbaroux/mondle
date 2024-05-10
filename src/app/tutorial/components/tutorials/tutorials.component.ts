@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { trigger, state, transition, style, animate, group } from '@angular/animations';
+import {Component} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {AnimatedElementComponent} from "../animated-element/animated-element.component";
 import {TranslateModule} from "@ngx-translate/core";
@@ -16,5 +15,5 @@ import {TranslateModule} from "@ngx-translate/core";
     AnimatedElementComponent,
   ],
 })
-export class TutorialsComponent  {
+export class TutorialsComponent {
 }

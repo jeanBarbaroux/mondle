@@ -5,7 +5,7 @@ import {CompareCountryComponent} from "../compare-country/compare-country.compon
 import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {TranslateModule} from "@ngx-translate/core";
-import {CountryGuessed, InformationGuess} from "../../../core/models/countryGuessed.model";
+import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {LangService} from "../../../services/lang.service";
 import {InputComponent} from "../../../core/components/input/input.component";
@@ -50,16 +50,25 @@ export class CountryComponent implements OnInit {
 
   @ViewChild('propositionsContainer') propositionsContainer!: ElementRef;
 
-  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService) {}
+  constructor(private countryService: CountryService, private localStorageService: LocalStorageService, private langService: LangService) {
+  }
 
   ngOnInit() {
+    let dateStarted = this.localStorageService.getItem('dateStarted');
+    if (dateStarted === null || new Date(dateStarted).getDate() !== new Date().getDate()) {
+      this.countryService.postStatVisit().subscribe();
+    }
     this.localStorageService.resetAtMidnight();
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
     let statistics = this.localStorageService.getItem('CountryStatistics')
     if (statistics.length === 0 || statistics[statistics.length - 1].date !== new Date().toLocaleDateString()) {
-      this.localStorageService.setItem('CountryStatistics', [...statistics, {date: new Date().toLocaleDateString(), count: 0, success: false}]);
+      this.localStorageService.setItem('CountryStatistics', [...statistics, {
+        date: new Date().toLocaleDateString(),
+        count: 0,
+        success: false
+      }]);
     }
     this.checkCountry();
   }

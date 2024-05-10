@@ -26,6 +26,14 @@ export class GuessedCountryComponent {
   constructor(private flagService: FlagService, private langService: LangService, private localStorageService: LocalStorageService, private sanitizer: DomSanitizer) {
   }
 
+  get displayFlagName() {
+    if (typeof this.flagName === 'undefined') {
+      return
+    }
+    const lang = this.localStorageService.getItem('settings.lang');
+    return lang === 'fr' ? this.flagName.countryGuessed : this.flagName.countryGuessEnglish;
+  }
+
   ngOnInit() {
     this.flagService.getCountryGuessed(this.countryGuessed).subscribe((countryGuessed) => {
         this.flagFound = countryGuessed.success
@@ -37,13 +45,5 @@ export class GuessedCountryComponent {
         this.localStorageService.setItem('FlagStatistics', statistics);
       }
     )
-  }
-
-  get displayFlagName() {
-    if (typeof this.flagName === 'undefined') {
-      return
-    }
-    const lang = this.localStorageService.getItem('settings.lang');
-    return lang === 'fr' ? this.flagName.countryGuessed : this.flagName.countryGuessEnglish;
   }
 }

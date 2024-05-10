@@ -43,4 +43,8 @@ export class CountryService {
   getFlags(): Observable<string> {
     return this.http.get(`${this.api}/api/Game/clue/flag`, {responseType: 'text'});
   }
+
+  postStatVisit(): Observable<any> {
+    return this.http.post(`${this.api}/api/Stats/add/visits/${1}`, {});
+  }
 }

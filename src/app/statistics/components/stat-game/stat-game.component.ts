@@ -23,6 +23,7 @@ export class StatGameComponent {
   averageTries: number = 0;
   history: string[] = [];
   streak: number = 0;
+  protected readonly length = length;
 
   constructor(private localStorageService: LocalStorageService) {
   }
@@ -63,6 +64,4 @@ export class StatGameComponent {
       }
     }
   }
-
-  protected readonly length = length;
 }

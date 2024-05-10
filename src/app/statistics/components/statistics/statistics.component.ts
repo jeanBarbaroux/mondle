@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {StatGameComponent} from "../stat-game/stat-game.component";
 import {TranslateModule} from "@ngx-translate/core";
 

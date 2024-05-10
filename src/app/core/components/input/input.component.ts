@@ -66,12 +66,12 @@ export class InputComponent implements OnInit {
     })
   }
 
+  reset() {
+    this.myControl.setValue('');
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  reset() {
-    this.myControl.setValue('');
   }
 }

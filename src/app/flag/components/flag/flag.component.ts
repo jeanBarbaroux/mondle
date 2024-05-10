@@ -44,10 +44,14 @@ export class FlagComponent {
   @ViewChild(InputComponent) inputComponent!: InputComponent;
 
 
-  constructor(private flagService: FlagService, private langService: LangService, private localStorageService: LocalStorageService, private sanitizer: DomSanitizer) {
+  constructor(private flagService: FlagService, private langService: LangService, private localStorageService: LocalStorageService, private countryService: CountryService) {
   }
 
   ngOnInit() {
+    let dateStarted = this.localStorageService.getItem('dateStarted');
+    if (dateStarted === null || new Date(dateStarted).getDate() !== new Date().getDate()) {
+      this.countryService.postStatVisit().subscribe();
+    }
     this.localStorageService.resetAtMidnight();
     this.langService.flagTried.subscribe((flagsTried) => {
       this.flagsTried = this.localStorageService.getItem('flagsTried')
@@ -68,7 +72,11 @@ export class FlagComponent {
       });
     let statistics = this.localStorageService.getItem('FlagStatistics')
     if (statistics.length === 0 || statistics[statistics.length - 1].date !== new Date().toLocaleDateString()) {
-      this.localStorageService.setItem('FlagStatistics', [...statistics, {date: new Date().toLocaleDateString(), count: 0, success: false}]);
+      this.localStorageService.setItem('FlagStatistics', [...statistics, {
+        date: new Date().toLocaleDateString(),
+        count: 0,
+        success: false
+      }]);
     }
   }
 

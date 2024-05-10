@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import { SlideInOutAnimation } from './animation';
+import {SlideInOutAnimation} from './animation';
 import {NgClass, NgIf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 
@@ -15,12 +15,11 @@ import {TranslateModule} from "@ngx-translate/core";
   ],
   animations: [SlideInOutAnimation]
 })
-export class AnimatedElementComponent  {
+export class AnimatedElementComponent {
+  static currentIn: AnimatedElementComponent | null = null;
   @Input() animationState = 'out';
   @Input() title!: string;
   @Input() description!: string;
-
-  static currentIn: AnimatedElementComponent | null = null;
 
   toggleShowDiv(divName: string) {
     if (divName === 'divA') {
