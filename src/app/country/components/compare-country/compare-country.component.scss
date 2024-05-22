@@ -1,0 +1,68 @@
+
+.container {
+  width: 600px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  background: #f0f0f0;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.countryName {
+  font-weight: bold;
+  padding-top: 5px;
+  width: 600px;
+  height: 20px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countryInfos {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50px;
+  margin-top: 25px;
+}
+
+app-compared-item {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 350px;
+    height: 90px;
+    margin-top: 5px;
+  }
+
+  .countryName {
+    padding-top: 5px;
+    width: 350px;
+    height: 15px;
+    font-size: 15px;
+  }
+
+  .countryInfos {
+    width: 350px;
+    height: 20px;
+    margin-top: 25px;
+  }
+
+  app-compared-item {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+  }
+
+  svg {
+    height: 50px;
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "HOME": {
+    "COUNTRY_BUTTON": "Pays du jour",
+    "FLAG_BUTTON": "Drapeau du jour"
+  },
+  "COUNTRY": {
+    "SEARCH": "Entrer un pays",
+    "GUESS": "Deviner"
+  },
+  "INDICATION": {
+    "CONTINENT": "Continent",
+    "AREA": "Superficie",
+    "POPULATION": "Population",
+    "PHONE_CODE": "Indicatif téléphonique",
+    "LANGUAGES": "Langues",
+    "COMMON_BORDERS": "Frontières"
+  },
+  "CLUE": {
+    "CAPITAL": "Capitale",
+    "FLAG": "Drapeau",
+    "CURRENCY": "Monnaie"
+  },
+  "LEGEND": {
+    "CORRECT": "Correct",
+    "WRONG": "Faux",
+    "CLOSE": "Proche",
+    "UPPER": "Plus grand",
+    "LOWER": "Plus petit"
+  },
+  "STATISTICS": {
+    "COUNTRIES": "Statistique des pays",
+    "FLAGS": "Statistique des drapeaux",
+    "GAMES": "Nombre de parties jouées",
+    "WON": "Nombre de parties gagnées",
+    "AVERAGE": "Moyenne d’essais par jour"
+  },
+  "TUTORIAL": {
+    "WELCOME": "Bienvenue",
+    "HDIW": "Comment ça marche ?",
+    "DESCRIPTION": "Chaque jour, vous avez deux modes de jeu à votre disposition: le mode \"Pays du jour\" et le mode \"drapeau du jour\". Le pays et le drapeau changent chaque jour à minuit (heure française).",
+    "COTD": "Pays du jour",
+    "FOTD": "Drapeau du jour",
+    "STATS": "Statistiques",
+    "F_DESC": "Pas de panique, ce mode est bien plus simple. Le drapeau du jour est affiché en entier. Vous devez simplement désigner le nom de pays qui y correspond.",
+    "S_DESC": "Vous pouvez consulter vos statistiques à tout moment. Elles sont divisées en deux parties: les statistiques du mode \"Pays du jour\" et celles du mode \"Drapeau du jour\". Pour les deux modes, vous verrez les mêmes statistiques: le nombres de partie prises, le nombre de victoires et le nombre moyen d’essais par jour. Vous pourrez également observer le nombre de jours consécutifs que vous avez joué et une infographie représentant une échelle de vous nombre de tentatives par jour sur la dernière année",
+    "COUNTRY": {
+      "DESC": "Dans le mode \"Pays du jour\", vous devez deviner le pays mystère. Pour cela, vous commencez sans informations. Vous devez entrer le nom d’un premier pays que vous souhaitez soumettre. Il est très peu probable que vous trouviez du premier coup. Vous aurez alors des informations concernant le pays que vous venez d’entrer:",
+      "CONTINENT": "Le Continent",
+      "AREA": "La superficie (en km²)",
+      "POPULATION": "La population",
+      "PHONE_CODE": "L’indicatif téléphonique",
+      "LANGUAGES": "Les langues parlées",
+      "BORDERS": "Le nombre de frontières du pays",
+      "CODE": "Ces informations sont accompagnées d’un code couleur et éventuellement aussi de flèches:",
+      "GREEN": "Les deux pays partagent la même caractéristique",
+      "ORANGE": "Vous êtes proche de la bonne réponse. Pour les nombres [-30% < pays du jour < +30%] pour les langues, au moins une langue en commun",
+      "RED": "Les deux pays n’ont pas la même caractéristique",
+      "UPPER": "Le pays mystère a une valeur plus grande que le pays que vous avez entré",
+      "LOWER": "Le pays mystère a une valeur plus petite que le pays que vous avez entré",
+      "CLUE": "Vous pouvez également choisir de révéler une indice sur le pays mystère tout les 5, 10 et 15 essais. Vous pourrez réveler dans l'ordre: la monnaie (symbole), la capitale et le drapeau. Cela n'a pas d'impact sur vos statistiques.",
+      "END": "Lorsque vous trouvez le pays, il vous faudra attendre le lendemain pour jouer à nouveau."
+    }
+  }
+}
+

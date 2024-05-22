@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-top: 10px;
+}
+
+.submit {
+  width: 70px;
+  height: 55px;
+  border-radius: 5px;
+}
+
+.input {
+  width: 380px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+img {
+  max-height: 200px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,65 @@
+h3 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h3:hover {
+  cursor: pointer;
+}
+
+.rotate {
+  transform: rotate(90deg);
+  transition: transform 0.6s ease;
+}
+
+.rotate-inv {
+  transform: rotate(0deg);
+  transition: transform 0.6s ease;
+}
+
+.colors {
+  list-style-type: none;
+}
+
+.colors > li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+span {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.color {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.legend-red {
+  background-color: red;
+}
+
+.legend-green {
+  background-color: green;
+}
+
+.legend-orange {
+  background-color: orange;
+}
+
+.down {
+  transform: rotate(180deg);
+}
+
+.country {
+  height: auto;
+}

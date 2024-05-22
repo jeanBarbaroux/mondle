@@ -1,0 +1,13 @@
+image: node:lts
+before_script:
+  - npm ci
+pages:
+  script:
+    - npm run build
+    - echo "/* /index.html 200" >dist/mondle/browser/_redirects
+  artifacts:
+    paths:
+      - dist/mondle/browser
+  publish: dist/mondle/browser
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
