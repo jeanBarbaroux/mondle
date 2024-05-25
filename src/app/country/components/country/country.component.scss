@@ -8,6 +8,7 @@
 
 button {
   font-size: 16px;
+  width: 400px;
   height: 40px;
   border-radius: 5px;
   margin-top: 5px;
@@ -22,11 +23,11 @@ button {
   overflow-y: auto;
   padding-bottom: 0;
   scrollbar-width: none;
+  overflow-x:auto;
 }
 
 .indice {
-  width: 90px;
-  background-color: #66666688;
+  width: 80px;
   height: 40px;
   text-align: center;
   color: lightgray;
@@ -34,11 +35,12 @@ button {
   font-size: 13px;
   border-bottom: lightgray;
   border-bottom-style: solid;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   padding-bottom: 5px;
-  border-radius: 5px;
 }
 
 .indications {
@@ -58,9 +60,10 @@ button {
 }
 
 .clue {
-  width: 120px;
+  width: 100px;
   border-radius: 5px;
   box-shadow: 7px 7px 0px 0px #0B2447;
+
 }
 
 .clue:active:not(:disabled) {
@@ -83,92 +86,6 @@ img {
 }
 
 .submit {
-  width: 70px;
+  width: 90px;
   height: 50px;
-  border-radius: 5px;
-  box-shadow: 7px 7px 0px 0px #0B2447;
-}
-
-.submit:active {
-  box-shadow: 0px 0px var(--main-color);
-  transform: translate(3px, 3px);
-}
-
-.input {
-  width: 380px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.legend {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 350px;
-  margin-bottom: 5px;
-  background-color: lightgrey;
-  flex-direction: column;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-.legend-items {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 350px;
-  align-items: center;
-}
-
-.color {
-  width: 40px;
-  height: 40px;
-  border-radius: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-}
-
-.legend-red {
-  background-color: red;
-}
-
-.legend-green {
-  background-color: green;
-}
-
-.legend-orange {
-  background-color: orange;
-}
-
-.legend-text {
-  font-size: 13px;
-  width: 80px;
-  text-align: center;
-}
-
-.arrow {
-}
-
-.down {
-  rotate: 180deg;
-}
-
-@media screen and (max-width: 700px) {
-  .indice {
-    width: 45px;
-    font-size: 10px;
-  }
-
-  .indications {
-    width: 350px;
-  }
-
-  .propositions {
-    max-height: 40vh;
-  }
 }

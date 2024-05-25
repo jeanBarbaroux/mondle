@@ -1,31 +1,27 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {TranslateService} from "@ngx-translate/core";
-import {LocalStorageService} from "../../services/local-storage.service";
-import {LangService} from "../../../services/lang.service";
-import {Subscription} from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
+import { LocalStorageService } from "../../services/local-storage.service";
+import { LangService } from "../../../services/lang.service";
+import { Subscription } from 'rxjs';
 import {RouterLink} from "@angular/router";
-import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   standalone: true,
   imports: [
-    RouterLink,
-    NgForOf
+    RouterLink
   ],
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  protected readonly history = history;
   private langChangeSubscription!: Subscription;
 
   constructor(
     private translate: TranslateService,
     private localstorageService: LocalStorageService,
     private langService: LangService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.langChangeSubscription = this.langService.langChange.subscribe((lang) => {
@@ -43,6 +39,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.translate.use(lang);
     this.localstorageService.setItem('settings.lang', lang);
     this.langService.lang.next(lang);
-    this.langService.langChange.next(lang);
   }
 }

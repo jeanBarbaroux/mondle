@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  setItem<T>(key: string, value: T) {
+  setItem(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
@@ -13,13 +13,9 @@ export class LocalStorageService {
   }
 
   clearItem() {
-    let itemToClear: string[] = ['countriesTried', 'count', 'flagTried', 'flagsTried', 'FlagCount']
+    let itemToClear: string[] = ['countriesTried', 'countryFound', 'count', 'allCountries']
     itemToClear.forEach((item) => {
-      localStorage.setItem(item, JSON.stringify([]));
-    })
-    let boolToClear: string[] = ['flagFound', 'countryFound']
-    boolToClear.forEach((item) => {
-      localStorage.setItem(item, JSON.stringify(false));
+      localStorage.removeItem(item)
     })
   }
 

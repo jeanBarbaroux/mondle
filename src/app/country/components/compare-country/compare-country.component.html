@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="countryName">
-    <div>{{ displayCountryName }}</div>
-  </div>
+    <div class="countryName">
+        <div>{{ displayCountryName}}</div>
+    </div>
 
-  <div class="countryInfos">
-    <app-compared-item *ngFor="let item of [1, 2, 3, 4, 5, 6]" [index]="String(item)"
-                       [indications]="countryGuessed.informationGuesses[item - 1]"></app-compared-item>
-  </div>
+    <div class="countryInfos">
+        <app-compared-item *ngFor="let item of [1, 2, 3, 4, 5, 6]" [index]="String(item)"
+                           [indications]="countryGuessed.informationGuesses[item - 1]"></app-compared-item>
+    </div>
 </div>

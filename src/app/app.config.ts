@@ -11,7 +11,6 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader"
 import localeFr from '@angular/common/locales/fr';
 import localeEN from '@angular/common/locales/en';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
-import { MatExpansionModule } from '@angular/material/expansion';
 
 registerLocaleData(localeFr)
 registerLocaleData(localeEN)
@@ -41,5 +40,5 @@ export const appConfig: ApplicationConfig = {
         }
       })
     )
-  ],
+  ]
 };

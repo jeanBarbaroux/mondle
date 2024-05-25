@@ -1,5 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {filter, Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {CountryService} from '../../../core/services/country.service';
 import {CompareCountryComponent} from "../compare-country/compare-country.component";
 import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
@@ -8,9 +10,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {CountryGuessed} from "../../../core/models/countryGuessed.model";
 import {LocalStorageService} from "../../../core/services/local-storage.service";
 import {LangService} from "../../../services/lang.service";
+import {SafeHtml} from "@angular/platform-browser";
 import {InputComponent} from "../../../core/components/input/input.component";
-import {ComparedItemComponent} from "../compared-item/compared-item.component";
-import {StatGameComponent} from "../../../statistics/components/stat-game/stat-game.component";
 
 @Component({
   selector: 'app-country',
@@ -27,20 +28,23 @@ import {StatGameComponent} from "../../../statistics/components/stat-game/stat-g
     TranslateModule,
     NgOptimizedImage,
     InputComponent,
-    ComparedItemComponent,
-    StatGameComponent,
   ],
   providers: [CountryService, LocalStorageService]
 })
 export class CountryComponent implements OnInit {
+  countries: string[] = [];
   selectedCountry: string = '';
   countriesTried: CountryGuessed[] = [];
   allCountries: string[] = [];
+  allCountriesEn: string[] = [];
   countryFound: boolean = false;
+  countryControl = new FormControl({value: '', disabled: this.countryFound});
+  private countriesTriedChangeSubscription!: Subscription;
+  private countChangeSubscription!: Subscription;
   deactivateFirst: boolean = true;
   deactivateSecond: boolean = true;
   deactivateThird: boolean = true;
-  flagHtml!: string;
+  flagHtml: SafeHtml = ''
 
   @ViewChild(InputComponent) inputComponent!: InputComponent;
   currency = 'CLUE.CURRENCY';
@@ -54,28 +58,80 @@ export class CountryComponent implements OnInit {
   }
 
   ngOnInit() {
-    let dateStarted = this.localStorageService.getItem('dateStarted');
-    if (dateStarted === null || new Date(dateStarted).getDate() !== new Date().getDate()) {
-      this.countryService.postStatVisit().subscribe();
-    }
     this.localStorageService.resetAtMidnight();
+    this.countryService.getAllCountries()
+      .subscribe((countryList) => {
+        let isLocalStorageEmpty = (this.localStorageService.getItem('allCountries')).length
+        if (isLocalStorageEmpty !== 0) {
+          this.allCountries = this.localStorageService.getItem('allCountries');
+        } else {
+          this.allCountries = countryList.sort();
+        }
+      });
+    this.countryService.getAllCountriesEn().subscribe((countryListEn) => {
+      let isLocalStorageEmpty = (this.localStorageService.getItem('allCountriesEn')).length
+      if (isLocalStorageEmpty !== 0) {
+        this.allCountriesEn = this.localStorageService.getItem('allCountriesEn');
+      } else {
+        this.allCountriesEn = countryListEn.sort();
+      }
+    })
     this.countriesTried = this.localStorageService.getItem('countriesTried');
     this.countryFound = this.localStorageService.getItem('countryFound');
     this.count = this.localStorageService.getItem('count');
-    let statistics = this.localStorageService.getItem('CountryStatistics')
-    if (statistics.length === 0 || statistics[statistics.length - 1].date !== new Date().toLocaleDateString()) {
-      this.localStorageService.setItem('CountryStatistics', [...statistics, {
-        date: new Date().toLocaleDateString(),
-        count: 0,
-        success: false
-      }]);
+    // Ne pas mettre if (this.countryFound) car si nouveau jour alors countryFound = [] donc true
+    this.langService.countryFoundChange.subscribe((countryFound) => {
+      if(countryFound) {
+        this.countryControl.disable();
+      } else {
+        this.countryControl.enable();
+      }
+    });
+    if (this.countryFound === true) {
+      this.countryControl.disable();
+    } else {
+      this.countryControl.enable();
     }
+
+    this.countryControl.valueChanges
+      .pipe(
+        filter(value => value !== null && value !== ''),
+        map(value => {
+          if (!value)
+            return this.allCountries;
+          return this.filterCountries(value);
+        })
+      )
+      .subscribe((filteredCountries) => {
+        this.countries = filteredCountries;
+      });
+    this.countriesTriedChangeSubscription = this.langService.countriesTriedChange.subscribe((countriesTried) => {
+      this.countriesTried = countriesTried;
+    })
+    this.countChangeSubscription = this.langService.countChange.subscribe((count) => {
+      this.count = count;
+    });
     this.checkCountry();
   }
 
-  selectCountry(country: string
-  ) {
-    if (country === '' || this.countryFound) {
+  ngOnDestroy() {
+    if (this.countriesTriedChangeSubscription) {
+      this.countriesTriedChangeSubscription.unsubscribe();
+    }
+    if (this.countChangeSubscription) {
+      this.countChangeSubscription.unsubscribe();
+    }
+  }
+
+  filterCountries(filter: string): string[] {
+    const normalizedFilter = filter.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    return this.allCountries.filter(country =>
+      country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(normalizedFilter)
+    );
+  }
+
+  selectCountry(country: string) {
+    if (country === '') {
       return
     }
     this.countryService.getCountryGuessed(country)
@@ -84,20 +140,24 @@ export class CountryComponent implements OnInit {
         this.countriesTried.push(countryGuessed);
         this.countriesTried.reverse()
         this.countryFound = countryGuessed.success;
+        this.langService.countryFoundChange.emit(this.countryFound);
         this.localStorageService.setItem('countriesTried', this.countriesTried);
         if (this.countryFound) {
           this.localStorageService.setItem('countryFound', this.countryFound);
         }
-        this.langService.countryFoundChange.emit(this.countryFound);
+        this.allCountries = this.allCountries.filter(c => c !== country);
+        this.localStorageService.setItem('allCountries', this.allCountries);
         this.langService.countriesTried.next(this.countriesTried);
-        let statistics = this.localStorageService.getItem('CountryStatistics')
-        statistics[statistics.length - 1].count = this.count;
-        statistics[statistics.length - 1].success = this.countryFound;
-        this.localStorageService.setItem('CountryStatistics', statistics);
+        if (this.countryFound) {
+          this.countryControl.disable();
+        } else {
+          this.countryControl.setValue('');
+        }
       });
     this.count++;
     this.checkCountry();
     this.localStorageService.setItem('count', this.count);
+    this.countryControl.setValue('');
     this.inputComponent.reset()
   }
 
@@ -116,7 +176,6 @@ export class CountryComponent implements OnInit {
   getCurrency() {
     this.countryService.getCurrencies()
       .subscribe((currency) => {
-        currency = currency.replace(/\"/g, '');
         this.currency = currency;
       });
   }
@@ -124,7 +183,6 @@ export class CountryComponent implements OnInit {
   getCapital() {
     this.countryService.getCapitals()
       .subscribe((capital) => {
-        capital = capital.replace(/\"/g, '');
         this.capital = capital;
       });
   }
@@ -132,7 +190,7 @@ export class CountryComponent implements OnInit {
   getFlag() {
     this.countryService.getFlags()
       .subscribe((flag) => {
-        this.flagHtml = flag.replace(/\"/g, '')
+        this.flagHtml = flag;
         this.flag = ''
       });
   }

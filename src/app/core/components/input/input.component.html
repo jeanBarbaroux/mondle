@@ -1,13 +1,13 @@
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <mat-label>{{ 'COUNTRY.SEARCH' | translate }}</mat-label>
-    <input [formControl]="myControl"
-           [matAutocomplete]="auto"
+    <mat-label>{{'COUNTRY.SEARCH' | translate}}</mat-label>
+    <input type="text"
            matInput
-           type="text">
-    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+           [matAutocomplete]="auto"
+           [formControl]="myControl">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{ option }}
+        {{option}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

@@ -20,9 +20,6 @@ export class LangService {
   countChange: Subject<number> = new Subject<number>();
   countryFound: LocalStorageSubject<boolean> = new LocalStorageSubject<boolean>('countryFound', false, true);
   countryFoundChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  flagTried: LocalStorageSubject<string[]> = new LocalStorageSubject<string[]>('flagTried', [], true);
-  flagTriedChange: Subject<string[]> = new Subject<string[]>();
-  flagFound: LocalStorageSubject<boolean> = new LocalStorageSubject<boolean>('flagFound', false, true);
 
   constructor(private localStorageService: LocalStorageService) {
     window.addEventListener('storage', (event) => {
@@ -37,12 +34,6 @@ export class LangService {
       }
       if (event.key === 'countryFound') {
         this.countryFoundChange.next(this.countryFound.value);
-      }
-      if (event.key === 'flagTried') {
-        this.flagTriedChange.next(this.flagTried.value);
-      }
-      if (event.key === 'flagFound') {
-        this.countryFoundChange.next(this.flagFound.value);
       }
     });
   }

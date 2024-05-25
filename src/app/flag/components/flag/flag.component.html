@@ -1,9 +1,0 @@
-<div class="container">
-  <img alt="flag" ngSrc="{{flagHtml}}"/>
-  <div class="input">
-    <app-input (countrySelected)="selectedCountry = $event"
-               (keydown.enter)="selectCountry(selectedCountry)"></app-input>
-    <button (click)="selectCountry(selectedCountry)" class="submit">{{ "COUNTRY.GUESS" | translate }}</button>
-  </div>
-  <app-guessed-country *ngFor="let country of flagsTried" [countryGuessed]="country"></app-guessed-country>
-</div>
